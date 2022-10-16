@@ -20,7 +20,7 @@ title: "There is no place like ^localhost$"
 title_separator: "-"
 subtitle: "Linux sysadmin blog about anything and everything" # site tagline that appears below site title in masthead
 name: "Andr0id"
-description: "An amazing test website."
+description: "IT blog."
 url: https://andr0id88.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl: # the subpath of your site, e.g. "/blog"
 repository: # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -107,11 +107,17 @@ author:
   avatar: /assets/images/avatar.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio: "Interests: Open Source, Arch & Kali Linux, VIM, Python, Networks."
   location: "Somewhere on earth"
-  email: 1988.hansen@gmail.com
+  # email: 1988.hansen@gmail.com
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:1988.hansen@gmail.com"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/andr0id88"
+    - label: "Linkedin"
+      icon: "fab fa-fw fa-linkedin"
+      url: www.linkedin.com/in/andré-hansen-77914a1a1
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://andr0id88.github.io"
@@ -121,9 +127,6 @@ author:
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/andr0id88"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
@@ -149,6 +152,9 @@ footer:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url:
+    - label: "Linkedin"
+      icon: "fab fa-fw fa-linkedin"
+      url: www.linkedin.com/in/andré-hansen-77914a1a1
 
 # Reading Files
 include:

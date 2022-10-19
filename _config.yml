@@ -115,9 +115,10 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/andr0id88"
-    - label: "Linkedin"
-      icon: "fab fa-fw fa-linkedin"
-      url: www.linkedin.com/in/andré-hansen-77914a1a1
+    # Link not working, needs fixing\redirecting
+    # - label: "Linkedin"
+    #   icon: "fab fa-fw fa-linkedin"
+    #   url: www.linkedin.com/in/andré-hansen-77914a1a1
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://andr0id88.github.io"

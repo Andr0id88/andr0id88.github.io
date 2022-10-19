@@ -17,7 +17,7 @@ certifications:
     image_path: assets/images/malwarecert.jpg
 
 myself:
-  - image_path: /assets/images/me.jpg
+  - image_path: /assets/images/meanon.jpg
     title: "About me"
     excerpt: 'IT engineer with a demonstrated history of setting up a working RedHat Satellite
 environment from the ground up. General good understanding of Satellite and the

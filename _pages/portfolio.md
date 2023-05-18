@@ -41,11 +41,19 @@ and Ansible.'
 {% include gallery id="certifications" %}
 
 ## Courses
-|             Subject               |        Employer        |      Year      |
+
+| Subject                            |        Employer        |    Year         |
+| :--------------------------------- | :--------------------: | ----------------|
+| Linux system engineer              |   Norsk Helsenett SF   | 2020 - Current  |
+| Windows system engineer / support  | Nordland fylkeskommune | 2018 - 2020     |
+
+
+| Subject                           | Employer               |      Year      |
 | :-------------------------------- | :--------------------: | -------------- |
 | CKA - Certified kubernetes admin  |   Norsk Helsenett SF   |      2023      |
 | Puppet essentials                 |   Norsk Helsenett SF   |      2022      |
 | Puppet beginner course            |   Norsk Helsenett SF   |      2021      |
+
 
 
 ## Skills
@@ -72,7 +80,6 @@ and Ansible.'
 | Iptables                           |
 | Kubernetes                         |
 | Linux System Administration:       |
-| - RHEL,Arch,Ubuntu                 |
 | Nginx                              |
 | Open-Soruce Software               |
 | Puppet                             |

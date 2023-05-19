@@ -86,7 +86,7 @@ I have a huge homelab consisting of kubernetes clusters running AWX,gitea,jenkin
 | Infrastructure                     |
 | Iptables                           |
 | Kubernetes                         |
-| Linux System Administration:       |
+| Linux System Administration        |
 | Nginx                              |
 | Open-Soruce Software               |
 | Puppet                             |

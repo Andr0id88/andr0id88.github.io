@@ -47,6 +47,7 @@ Another ongoing project I have been involved in is the implementation of Cyberar
 In my personal capacity, I maintain an extensive homelab environment consisting of Kubernetes clusters running AWX, Gitea, Jenkins, and other tools. Additionally, I manage multiple virtual machines running Foreman, as well as test VMs with various web servers and databases for automation testing and experimentation. I also maintain a few Windows VMs as victims for my Kali Linux machine.
 
 ## Education
+
 | Subject                           | School                 | Year           |
 | :-------------------------------- | :--------------------: | -------------- |
 | Computer and electronics VG3      |   Oscarsborg VGS       |      2017      |
@@ -55,6 +56,7 @@ In my personal capacity, I maintain an extensive homelab environment consisting 
 
 
 ## Courses
+
 | Subject                           | Employer               |      Year      |
 | :-------------------------------- | :--------------------: | -------------- |
 | CKA - Certified kubernetes admin  |   Norsk Helsenett SF   |      2023      |

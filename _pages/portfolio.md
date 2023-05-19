@@ -19,7 +19,7 @@ certifications:
 myself:
   - image_path: /assets/images/meanon.jpg
     title: "About me"
-    excerpt: 'I have used linux for 15+ years and i love making systems more efficent, be that my work laptop - or automating mutliple servers using new tech. Only recently i have turned my passion and hobby into my work, but dont let my little work experince fool you for what i am actually capable of. I like to see myself as a person that think out of the box when it comes to working efficent on linux - and i trive in the terminal. Ncurses, shellscripts yes please - if i get a task that revolves clicking in a GUI you can bet money on that the repetative task will be automated one way or the other.'
+    excerpt: "I have been an avid Linux user for over 15 years, and I find great joy in optimizing systems, whether it's my personal work laptop or automating multiple servers using cutting-edge technologies. Recently, I have turned my passion and hobby into my profession, and although my work experience may appear limited, I assure you that it doesn't reflect my true capabilities. I consider myself someone who thinks outside the box when it comes to efficient Linux workflows, and I thrive in the terminal environment."
 ---
 
 {% include feature_row id="myself" type="left" %}
@@ -34,17 +34,17 @@ myself:
 ## Projects
 I have been a part of many minor and larger projects in the last years, here are some of the projects i have been a part of.
 #### Redhat satellite
-The biggest project was setting up RedHat satellite alone for over 1000 servers within the health sector in norway. This project will be ongoing as long as i work here since there are new teams and new problems to solve and automate every day. Satellite was set up by mixed automation between puppet, ansible and some shellscripts aswell.
+One of the significant projects I undertook was the independent setup of RedHat Satellite for over 1000 servers within the healthcare sector in Norway. This ongoing project requires continuous problem-solving and automation efforts as new teams and challenges emerge. The setup involved a combination of automation tools such as Puppet, Ansible, and shell scripts.
 #### Redhat insights
-I also took it upon myself to introduce redhat insights along with satellite to the organization, and i have been working continiously to improve the integration of the insights service with the rest of our platform. This is to provide a secure platform and to enable the our security team and others to quickly identify new treaths that occur.
+As part of my responsibilities, I took the initiative to introduce RedHat Insights alongside Satellite to our organization. I have been consistently working to enhance the integration of the Insights service with our overall platform. The goal is to establish a secure environment that enables our security team and other stakeholders to promptly identify and address emerging threats.
 #### Ansible automation platform
-I am currently working on setting up Ansible Automation Plattform to provide a whole new service for all of our employees. The plan is to integrate this with Satellite aswell as insights to provide a automated errata and remediation service to our linux platform.
+Currently, I am actively engaged in setting up the Ansible Automation Platform to offer a brand new service to all our employees. The plan involves integrating this platform with Satellite and Insights to provide an automated errata and remediation service for our Linux platform. Additionally, as part of the Ansible Automation Platform implementation, we are leveraging Ansible for automation across our entire infrastructure, including both Windows and Linux machines as well as network devices.
 #### Linux work surface
-When i started in NHN Linux as a office computer was unheard of and a dream. I can now proudly say that since that day i have become involved in a huge project that aims to change that. We are in the late stages of beeing able to offer linux as a work laptop and satellite and insights will be a big part of making that happen. This is a project that i have fallen in love with since i love seeing windows users discovering the beauty and efficency of a linux machine first hand. And personaly as a beta tester for this new linux laptop i think my productivity went up tenfold.
+When I initially joined NHN Linux, the concept of using Linux as an office computer seemed unattainable. However, I am proud to be part of a significant project that aims to change that perception. We are in the final stages of being able to offer Linux as a work laptop, with Satellite and Insights playing a crucial role in this endeavor. Personally, as a beta tester for this new Linux laptop, I have witnessed a remarkable increase in my productivity.
 #### Cyberark
-And i also been working on Cyberark systems to provide security to linux servers as well as windows in our infrastructure. This is an ongoing project that just keeps growing for each year with new components and new integrations.
+Another ongoing project I have been involved in is the implementation of Cyberark systems to enhance the security of both our Linux and Windows servers in the infrastructure. This project continues to expand each year, incorporating new components and integrations.
 #### Homelab
-I have a huge homelab consisting of kubernetes clusters running AWX,gitea,jenkins etc. Also multiple virtual machines running foreman, testvm's running diffrent webservers and databases for automation testing and tinkering. Also a few windows vm's for pentesting purposes and of course kali linux for that exact same reason.
+In my personal capacity, I maintain an extensive homelab environment consisting of Kubernetes clusters running AWX, Gitea, Jenkins, and other tools. Additionally, I manage multiple virtual machines running Foreman, as well as test VMs with various web servers and databases for automation testing and experimentation. I also maintain a few Windows VMs as victims for my Kali Linux machine.
 
 ## Education
 | Subject                           | School                 |      Year      |

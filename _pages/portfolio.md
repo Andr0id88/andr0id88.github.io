@@ -3,6 +3,8 @@ title: "CV and portfolio"
 layout: archive
 permalink: /portfolio/
 author_profile: true
+classes: wide
+toc: true
 header:
   overlay_color: "#000"
   overlay_filter: "0.5"
@@ -17,9 +19,9 @@ certifications:
     image_path: assets/images/malwarecert.jpg
 
 myself:
-  - image_path: /assets/images/meanon.jpg
+  - image_path: /assets/images/cat.png
     title: "About me"
-    excerpt: "I have been an avid Linux user for over 15 years, and I find great joy in optimizing systems, whether it's my personal work laptop or automating multiple servers using cutting-edge technologies. Recently, I have turned my passion and hobby into my profession, and although my work experience may appear limited, I assure you that it doesn't reflect my true capabilities. I consider myself someone who thinks outside the box when it comes to efficient Linux workflows, and I thrive in the terminal environment."
+    excerpt: "I have been an avid Linux user for over 15 years, and I find great joy in optimizing systems, whether it's my personal work laptop or automating multiple servers using cutting-edge technologies. I consider myself someone who thinks outside the box when it comes to efficient Linux workflows, and I thrive in the terminal environment."
 ---
 
 {% include feature_row id="myself" type="left" %}

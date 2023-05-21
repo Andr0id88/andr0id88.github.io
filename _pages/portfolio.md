@@ -3,8 +3,6 @@ title: "CV and portfolio"
 layout: archive
 permalink: /portfolio/
 author_profile: true
-classes: wide
-toc: true
 header:
   overlay_color: "#000"
   overlay_filter: "0.5"

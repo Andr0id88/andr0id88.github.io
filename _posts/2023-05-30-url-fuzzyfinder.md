@@ -15,7 +15,7 @@ This guide provides a step-by-step explanation on effectively managing bookmarks
 
 
 # Preview
-The end result will be a menu where you can perform a fuzzy search through a list of bookmarks and open multiple tabs at once even, resembling something like the following:
+The end result will be a menu where you can perform a fuzzy search through a list of bookmarks and open multiple tabs at once even. This menu can be opened on any screen above your current program with 2 keys, also removed by the same keybinding or automaticly when you use it, it will look something similar to this in the end:
 ![image-center](/assets/images/surf.png){: .align-center}
 
 # Prerequisites
@@ -29,17 +29,15 @@ The end result will be a menu where you can perform a fuzzy search through a lis
 
 ### Disclaimer
 I intentionally made this guide independent of any specific distribution or window manager (WM), and I didn't aim to provide an exhaustive list of all possible setup methods. The purpose of this guide is to give you a general understanding of how to accomplish the task, and it's up to you to adapt it to your preferred distribution.
-From this point on i assume you have i3 installed, it is possible to replicate this on other WM's but i will not deep dive into that in this post, so for those people running Hannah Montana or TempleOS distro with Gnome - you are on your own.
+From this point on i assume you have i3 installed, it is possible to replicate this on other WM's but i will not deep dive into that in this post, so for those that are running Hannah Montana or TempleOS with Gnome - you are on your own.
 If you are unsure on how to install I3 there is a great documentation to be found on the Arch Wiki: <https://wiki.archlinux.org/title/i3>
 
 ### Surfraw installation
 To get started we need to install surfraw, this is a CLI tool written by Julian Assange back in the day when he was nothing more than a software developer.
-Depending on your distro there are diffrent ways to get this installed, on some distro's such as RHEL you will have to compile it from source.
 Installation guide for surfraw is located here: <https://gitlab.com/surfraw/Surfraw/-/wikis/Installation>
 
 ### Fzf installation
 After that we will need FZF to be able to fuzzy find our bookmarks.
-This installation method is also distro dependant.
 The installation guide for FZF is located here: <https://github.com/junegunn/fzf#installation>
 
 ### Add bookmarks

@@ -1,12 +1,10 @@
 ---
 title: "Fuzzyfinder for bookmarks"
 categories:
-  - Web
-  - Linux
-  - i3
-tags:
-  - i3
   - Workflow
+tags:
+  - Fzf
+  - Web
 last_modified_at: 2023-05-30
 ---
 

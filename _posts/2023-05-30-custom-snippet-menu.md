@@ -2,7 +2,6 @@
 title: "Custom snippet menu"
 categories:
   - Workflow
-  - i3
 tags:
   - Rofi
   - Snippets

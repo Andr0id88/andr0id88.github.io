@@ -11,7 +11,11 @@ last_modified_at: 2023-05-30
 ---
 
 # Intro
-This guide provides a step-by-step explanation on effectively managing bookmarks in Linux. If your bookmarks toolbar resembles someone that have been web scraping the entire internet, finding the bookmark you need can be a tedious task. However, in this straightforward guide, I will demonstrate a much simpler method of managing bookmarks. Unfortunately, achieving this requires installing multiple packages. On the positive side, you will be able to store all your bookmarks in a text file that can be easily shared across devices using Git. The end result will be a menu where you can perform a fuzzy search through a list of bookmarks and open multiple tabs at once even, resembling something like the following:
+This guide provides a step-by-step explanation on effectively managing bookmarks in Linux. If your bookmarks toolbar resembles someone that have been web scraping the entire internet, finding the bookmark you need can be a tedious task. However, in this straightforward guide, I will demonstrate a much simpler method of managing bookmarks. Unfortunately, achieving this requires installing multiple packages. On the positive side, you will be able to store all your bookmarks in a text file that can be easily shared across devices using Git, you will be able to find your bookmarks with a minimal amount of keypresses even if you have hundreds of them.
+
+
+# Preview
+The end result will be a menu where you can perform a fuzzy search through a list of bookmarks and open multiple tabs at once even, resembling something like the following:
 ![image-center](/assets/images/surf.png){: .align-center}
 
 # Prerequisites

@@ -44,16 +44,15 @@ The installation guide for FZF is located here: <https://github.com/junegunn/fzf
 ### Add bookmarks
 Now it is time to create some bookmarks, we do that by simply adding a name for our bookmarks and 1 or more spaces and the URL itself
 ```bash
-echo "vg https://www.vg.no" >> ~/.config/surfraw/bookmarks
-echo "dagbladet https://www.dagbladet.no" >> ~/.config/surfraw/bookmarks
 # If you find it easier you could of course just open this file with your favorite text editor and add the bookmarks that way.
+echo "suckless https://suckless.org/" >> ~/.config/surfraw/bookmarks
+echo "archwiki https://wiki.archlinux.org/ " >> ~/.config/surfraw/bookmarks
 ```
 
 ### Vim tricks
 If you have alittle OCD like myself and little time to fiddle around with sorting the content, and the spacing between the text in this file to make it look nice - you could make vim do it automaticly for you by adding this in your vimrc config.
-Note that im using nvim lua so if you are using vanilla vim\nvim use the bottom example.
 ```bash
-# Nvim lua config
+# Example Nvim lua config
 -- Sort and format bookmarks file before writing to disk
 vim.cmd([[
   augroup format_bookmarks
@@ -62,13 +61,13 @@ vim.cmd([[
   augroup END
 ]])
 
-# For vanilla vim you just need to add this:
+# For vanilla vim users add this:
 autocmd BufWritePre ~/.config/surfraw/bookmarks :silent! sort | %!column -t
 ```
 
 ### Scripts
-Once you have a few bookmarks added we can then add the dropdown menu for i3, to begin with we will add alittle script that will in time create our dropdown menu for us.
-So open up you favorite text editor and change out the terminal variable for what you are using on your machine:
+Once you have a few bookmarks added we can then add the dropdown menu for i3, to begin with we will add a script that will in time create our dropdown menu for us.
+Open up you favorite text editor and change out the terminal variable for what you are using on your machine:
 vim ~/.local/bin/ddspawn
 ```bash
 #!/bin/sh

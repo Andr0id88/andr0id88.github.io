@@ -29,13 +29,13 @@ If you are unsure on how to install I3 there is a great documentation to be foun
 
 ### Surfraw installation
 To get started we need to install surfraw, this is a CLI tool written by Julian Assange back in the day when he was nothing more than a software developer.
-Depending on your distro there are diffrent ways to get this installed, since im running RHEL9 i compiled it from source. The complete installation guide for surfraw is located here:
-<https://gitlab.com/surfraw/Surfraw/-/wikis/Installation>
+Depending on your distro there are diffrent ways to get this installed, on some distro's such as RHEL you will have to compile it from source.
+Installation guide for surfraw is located here: <https://gitlab.com/surfraw/Surfraw/-/wikis/Installation>
 
 ### Fzf installation
 After that we will need FZF to be able to fuzzy find our bookmarks.
-This is also distro dependant so i will refer you to the installation guide for FZF which is located here:
-<https://github.com/junegunn/fzf#installation>
+This installation method is also distro dependant.
+The installation guide for FZF is located here: <https://github.com/junegunn/fzf#installation>
 
 ### Add bookmarks
 Now it is time to create some bookmarks, we do that by simply adding a name for our bookmarks and 1 or more spaces and the URL itself

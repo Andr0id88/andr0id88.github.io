@@ -10,15 +10,15 @@ tags:
 last_modified_at: 2023-05-30
 ---
 
-# Intro
+## Intro
 This guide provides a step-by-step explanation on effectively managing bookmarks in Linux. If your bookmarks toolbar resembles someone that have been web scraping the entire internet, finding the bookmark you need can be a tedious task. However, in this straightforward guide, I will demonstrate a much simpler method of managing bookmarks. Unfortunately, achieving this requires installing multiple packages. On the positive side, you will be able to store all your bookmarks in a text file that can be easily shared across devices using Git, you will be able to find your bookmarks with a minimal amount of keypresses even if you have hundreds of them.
 
 
-# Preview
+## Preview
 The end result will be a menu where you can perform a fuzzy search through a list of bookmarks and open multiple tabs at once even. This menu can be opened on any screen above your current program with 2 keys, also removed by the same keybinding or automaticly when you use it, it will look something similar to this in the end:
 ![image-center](/assets/images/surf.png){: .align-center}
 
-# Prerequisites
+## Prerequisites
 - i3 or similar tiling window managers that supports dropdown menu's
 - Surfraw
 - Fzf
@@ -26,7 +26,7 @@ The end result will be a menu where you can perform a fuzzy search through a lis
 - Git (optional)
 - Fingers (not optional)
 
-# Setup
+## Setup
 
 ### Disclaimer
 I intentionally made this guide independent of any specific distribution or window manager (WM), and I didn't aim to provide an exhaustive list of all possible setup methods. The purpose of this guide is to give you a general understanding of how to accomplish the task, and it's up to you to adapt it to your preferred distribution.
@@ -36,6 +36,14 @@ If you are unsure on how to install and configure I3 there is a great documentat
 ### Surfraw installation
 First of we need to install surfraw, this is a CLI tool written by Julian Assange back in the day when he was nothing more than a software developer.
 Installation guide for surfraw is located here: <https://gitlab.com/surfraw/Surfraw/-/wikis/Installation>
+
+Add your browser of choice into the config file:
+vim .config/surfraw/conf
+```bash
+SURFRAW_text_browser=w3m
+SURFRAW_graphical_browser=firefox
+SURFRAW_graphical=yes
+```
 
 ### Fzf installation
 After that we will need FZF to be able to fuzzy find our bookmarks.

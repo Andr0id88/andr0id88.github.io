@@ -19,7 +19,7 @@ As of now im litteraly using it for anything and everything, why spend 15-20 sec
 The end result will be a menu where you can search through a list of snippets and then automaticly paste it into the terminal, slack, email whatever you want and have selected - all this in very few clicks. It will look something like that is the end:
 ![image-center](/assets/images/snippet1.png){: .align-center}
 
-Just to illustrate here is a snippet for running batch jobs with xargs which is fairly lenght to type out
+Just to illustrate here is a snippet for running batch jobs with xargs that is fairly lenghty to type
 ![image-center](/assets/images/snippet2.png){: .align-center}
 
 ## Prerequisites

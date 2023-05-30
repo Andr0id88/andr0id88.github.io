@@ -17,9 +17,10 @@ As of now im litteraly using it for anything and everything, why spend 15-20 sec
 
 ## Preview
 The end result will be a menu where you can search through a list of snippets and then automaticly paste it into the terminal, slack, email whatever you want and have selected - all this in very few clicks. It will look something like that is the end:
-![image-left](/assets/images/snippet1.png){: .align-left}
+![image-center](/assets/images/snippet1.png){: .align-center}
 
-![image-right](/assets/images/snippet2.png){: .align-right}
+Just to illustrate here is a snippet for running batch jobs with xargs which is fairly lenght to type out
+![image-center](/assets/images/snippet2.png){: .align-center}
 
 ## Prerequisites
 - i3 or similar tiling window managers that are compatible with rofi\dmenu

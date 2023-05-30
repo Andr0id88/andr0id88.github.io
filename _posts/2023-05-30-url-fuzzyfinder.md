@@ -21,6 +21,7 @@ The end result will be a menu where you can perform a fuzzy search through a lis
 # Prerequisites
 - i3 or similar tiling window managers that supports dropdown menu's
 - Surfraw
+- Fzf
 - Tmux (optional)
 - Git (optional)
 

@@ -24,6 +24,7 @@ The end result will be a menu where you can perform a fuzzy search through a lis
 - Fzf
 - Tmux (optional)
 - Git (optional)
+- Fingers (not optional)
 
 # Setup
 

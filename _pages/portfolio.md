@@ -19,12 +19,13 @@ excerpt: "Collection of CV, skills and certifications"
 certs:
   - image_path: assets/images/rhcsa-certification.jpg
     title: "RHCSA"
-
+    excerpt: "Redhat Certified System Administrator"
   - image_path: /assets/images/vault-enterprise-diploma.jpg
-    title: "Vault enterprise course diploma"
-
+    title: "HC Vault"
+    excerpt: "Hashicorp Vault enterprise proof of attendance"
   - image_path: /assets/images/k8s-diploma.jpg
-    title: "CKA course diploma"
+    title: "Kubernetes"
+    excerpt: "Certified Kubernetes Administrator proof of attendance"
 
 myself:
   - image_path: /assets/images/cat.png
@@ -86,11 +87,7 @@ In my personal capacity, I maintain an extensive homelab environment consisting 
 
 ## Certifications and diplomas
 
-
-{% include feature_row id="certs" type="center" %}
-
-
-{% include feature_row %}
+{% include feature_row id="certs" type="left" %}
 
 | Skills w\o certification           |
 | :--------------------------------- |

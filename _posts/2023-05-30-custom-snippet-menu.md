@@ -99,4 +99,4 @@ Once you have a few snippets added we can then add shortcut in i3, or you could 
 bindsym $mod+s exec snippets
 ```
 
-That is it! You made it all this way and once you have made the snippets, "Have you tried turning it off and on again" or "I advice you to read the fantastic manual" you litteraly made it within IT industry, clap yourself on the shoulder - you earned it. Enjoy!
+That is it! You made it all this way and once you have made the snippets you are good to go. If it does not work i have 2 tips - "Have you tried turning it off and on again" or "I advice you to read the fantastic manual". If you made it this far with your sanity intactclap yourself on the shoulder - you earned it. Enjoy!

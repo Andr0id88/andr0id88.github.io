@@ -19,8 +19,10 @@ excerpt: "Collection of CV, skills and certifications"
 certs:
   - image_path: assets/images/rhcsa-certification.jpg
     title: "RHCSA"
+
   - image_path: /assets/images/vault-enterprise-diploma.jpg
     title: "Vault enterprise course diploma"
+
   - image_path: /assets/images/k8s-diploma.jpg
     title: "CKA course diploma"
 

@@ -12,9 +12,17 @@ header:
       url: "/"
 excerpt: "Collection of CV, skills and certifications"
 
-certifications:
-  - url: /assets/images/malwarecert.jpg
-    image_path: assets/images/malwarecert.jpg
+# certifications:
+#   - url: /assets/images/malwarecert.jpg
+#     image_path: assets/images/malwarecert.jpg
+
+certs:
+  - image_path: assets/images/rhcsa-certification.jpg
+    title: "RHCSA"
+  - image_path: /assets/images/vault-enterprise-diploma.jpg
+    title: "Vault enterprise course diploma"
+  - image_path: /assets/images/k8s-diploma.jpg
+    title: "CKA course diploma"
 
 myself:
   - image_path: /assets/images/cat.png
@@ -76,15 +84,8 @@ In my personal capacity, I maintain an extensive homelab environment consisting 
 
 ## Certifications and diplomas
 
-feature_row:
-  - image_path: assets/images/rhcsa-certification.jpg
-    title: "RHCSA"
-  - image_path: /assets/images/vault-enterprise-diploma.jpg
-    title: "Vault enterprise course diploma"
-  - image_path: /assets/images/k8s-diploma.jpg
-    title: "CKA course diploma"
 
-{% include feature_row id="intro" type="center" %}
+{% include feature_row id="certs" type="center" %}
 
 
 {% include feature_row %}

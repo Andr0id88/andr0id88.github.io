@@ -13,6 +13,7 @@ last_modified_at: 2024-02-24
 This guide provides a script and a short and simple explanation on how to effectively manage foreman host groups and environments for servers.
 
 **Why should you care, and why should you use it?**
+
 Without this script, the typical workflow for those familiar with Foreman and Git is as follows:
 * Make changes and push them to Git.
 * Log onto the hosts with SSH and stop the Puppet service.
@@ -37,12 +38,6 @@ Eventually it will be integrated to my "git add, commit, push" script for an eve
 This script is provided as-is without any support, and I strongly encourage you to thoroughly test it in a test environment before implementing it in a production setting.
 It is designed solely with my own workflow in mind, which primarily revolves around using the CLI.
 Therefore, I will not modify it to suit anyone else's workflow. However, if you have any suggestions for improvement, feel free to contact me. I will consider implementing changes if I find the ideas beneficial.
-
-For this script to function, you must have pass installed and your password encrypted with a GPG key. Detailing this setup is beyond the scope of this post, but I plan to create another post explaining how you can set this up. The script includes the password in clear text; I strongly advise against keeping the Foreman password in plaintext for security reasons.
-
-This script will not be supported in any way shape or form, and i encourage you to test it thoruguly in an test environment before you take the leap to use it in a production environment.
-I will not tweak it in any shape or form to fit some other persons workflow, this is made 100% with my own workflow in mind - which mostly revolve around using the CLI.
-With that said if you have any ideas on how it can be improved feel free to contact me about them and i will consider making changes if i think the idea is good\helpful.
 
 It is strongly encouraged that you use this script with the password manager pass to enable you to have the foreman password encrypted with a GPG key.
 This setup is out of scope for this post but i will create another post soon about how you can set that up.

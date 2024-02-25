@@ -12,13 +12,13 @@ intro:
   - excerpt: "Here are some pictures that illustrate how some of the features looks like in action, the script itself is quite self explanatory."
 
 feature_row:
-  - image_path: /assets/images/delete-containers3.png
+  - image_path: /assets/images/conctl1.png
     title: "Multi select"
     excerpt: "Stop and delete multiple containers with minimum hassle"
-  - image_path: /assets/images/start-service.png
+  - image_path: /assets/images/conctl2.png
     title: "Start services easy"
     excerpt: "Start well known services easy for testing purposes"
-  - image_path: /assets/images/listcontainers.png
+  - image_path: /assets/images/conctl3.png
     title: "Auto increment"
     excerpt: "Buildt in auto increment of names and port numbers"
 ---

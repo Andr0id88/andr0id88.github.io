@@ -7,18 +7,10 @@ tags:
   - podman
   - fzf
 last_modified_at: 2024-02-25
----
 
-## Introduction
+intro:
+  - excerpt: "Here are some pictures that illustrate how some of the features looks like in action, the script itself is quite self explanatory."
 
-#### Importance and Utility
-This script, like many others I have developed, is designed to enhance efficiency and save time. It provides a streamlined method for managing container lifecycles directly from the Command Line Interface (CLI) with minimal effort.
-
-The script facilitates comprehensive control over various aspects of container management, including creation, deletion, purging, and executing operations within containers. Additionally, it features built-in support for port and name incrementation for basic service containers, facilitating simultaneous operation of multiple instances, such as multiple NGINX, without port or name conflicts. It supports the deployment of various containers, including NGINX, MySQL, MongoDB, MariaDB, and HTTPD, Portainer, with few keystrokes and without the need for CLI commands.
-
-
-## Preview
-Here are some pictures that illustrate how some of the features looks like in action, the script itself is quite self explanatory.
 feature_row:
   - image_path: assets/images/delete-containers3.png
     title: "Multi select"
@@ -31,7 +23,17 @@ feature_row:
     excerpt: "Buildt in auto increment of names and port numbers"
 ---
 
-{% include feature_row type="center" %}
+## Introduction
+
+#### Importance and Utility
+This script, like many others I have developed, is designed to enhance efficiency and save time. It provides a streamlined method for managing container lifecycles directly from the Command Line Interface (CLI) with minimal effort.
+
+The script facilitates comprehensive control over various aspects of container management, including creation, deletion, purging, and executing operations within containers. Additionally, it features built-in support for port and name incrementation for basic service containers, facilitating simultaneous operation of multiple instances, such as multiple NGINX, without port or name conflicts. It supports the deployment of various containers, including NGINX, MySQL, MongoDB, MariaDB, and HTTPD, Portainer, with few keystrokes and without the need for CLI commands.
+
+
+## Preview
+
+{% include feature_row id="intro" type="center" %}
 
 ## Prerequisites
 - Fzf

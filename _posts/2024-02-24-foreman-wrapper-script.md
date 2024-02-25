@@ -60,10 +60,10 @@ Then make it executable by running this command ```chmod +x ~/Downloads/pwr && m
 #!/bin/bash
 
 # Description: Tool to easily control foreman hostgroups and environments
+# License: MIT License
 # Written by: André Hansen
 # Github: https://github.com/Andr0id88
 # Linkedin: www.linkedin.com/in/andré-hansen-77914a1a1
-# License: MIT License
 
 # Foreman API credentials and URL
 FOREMAN_URL="https://<foremanURL>"

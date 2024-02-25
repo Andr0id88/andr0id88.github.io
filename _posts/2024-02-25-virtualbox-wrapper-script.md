@@ -39,10 +39,10 @@ You can also take and delete snapshots and revert to snapshots - it will automat
 ```bash
 #!/bin/bash
 # Description: Tool to easily control VM's from the CLI
+# License: MIT License
 # Written by: André Hansen
 # Github: https://github.com/Andr0id88
 # Linkedin: www.linkedin.com/in/andré-hansen-77914a1a1
-#License: MIT License
 
 # Color variables
 reset=$'\e[0m'

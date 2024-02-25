@@ -8,261 +8,289 @@ tags:
 last_modified_at: 2024-02-25
 ---
 
-## Testing
-This is a test to download the script:
-[Download Script](/downloads/vmctl)
+## Intro
 
 **Why should you care, and why should you use it?**
+This script as many of my other wrapper scripts is simply to save time, be more efficent!
+It lets you control VM's directly from the CLI and it is really easy to use.
 
-Without this script, the typical workflow for those familiar with Foreman and Git is as follows:
-* Make changes and push them to Git.
-* Log onto the hosts with SSH and stop the Puppet service.
-* Open a GUI and search for the hosts you want to test the changes on.
-* Change the environment using the dropdown menu.
-* Return to the terminal, open an SSH session, and run puppet agent -t --noop to check if the code you just pushed to Git works as intended.
-* Merge the Git branch, return to the Foreman GUI, and change the hosts back to, for example, the production environment.
-* Log onto the servers with SSH and start the Puppet service again.
-This workflow is cumbersome, especially when managing multiple hosts with different hostnames, as it involves frequent back-and-forth navigation in a GUI, which can be time-consuming.
-
-This wrapper script completely transforms this process, allowing you to make these changes on as many hosts as you want quickly using FZF tab selection.
-It simplifies the above workflow to the following steps:
-* Make changes and push them to Git.
-* Run the wrapper script and tab select the hosts for which you want to change the environment, or optionally the host group, (which by default is set not to change).
-* It automatically stops the Puppet service before changing the environment.
-* It also automatically opens new panes with the selected hosts and starts a puppet agent -t --noop run after the environment or host group has been changed.
-
-A feature that will be added really soon is to automaticly start the puppet service again after the user has checked the --noop panes. Also the possibilty to change multiple diffrent environments and host groups for diffrent hosts.
-Eventually it will be integrated to my "git add, commit, push" script for an even more efficent workflow - this will be explained in a future post.
-
-## Disclaimer
-This script is provided as-is without any support, and I strongly encourage you to thoroughly test it in a test environment before implementing it in a production setting.
-It is designed solely with my own workflow in mind, which primarily revolves around using the CLI.
-Therefore, I will not modify it to suit anyone else's workflow. However, if you have any suggestions for improvement, feel free to contact me. I will consider implementing changes if I find the ideas beneficial.
-
-It is strongly encouraged that you use this script with the password manager pass to enable you to have the foreman password encrypted with a GPG key.
-This setup is out of scope for this post but i will create another post soon about how you can set that up.
-In the script included the password in clear text, i strongly encourage you not to do this in a production environment for obvious reason.
+Im a big fan of using vagrant for spinning up vm's on the fly and then destroying them easily.
+With that said i have a home lab in which i want things to be running permanently in VM's, for this usecase i want the extra features of virtualbox such as snapshots and so on.
 
 ## Prerequisites
 (All these can be installed on RHEL and Fedora by running the script with the --prereq flag)
 - Fzf
-- Jq
-- Xpanes
-- Tmux
+- Virtualbox
+- VM's in virtual box
 - Fingers (not optional)
 
 ## Setup
-Simply create a file and call it whatever you want, i called mine pwr for easy access and put it in my PATH (~/.local/bin/pwr)
-Then make it executable with ```chmod +x ~/.local/bin/pwr```
+Simply create a file and call it whatever you want, i called mine vmctl for easy access and put it in my PATH (~/.local/bin/vmctl)
+Or download the script directly from this link: [Download Script](/downloads/vmctl)
+Then make it executable with ```chmod +x ~/.local/bin/vmctl```
+
 
 ```bash
 #!/bin/bash
+# Description:
+# Tool to easily control VM's from the CLI
+# Written by: André Hansen
+# Github: https://github.com/Andr0id88
+#License: MIT License
 
-# Foreman API credentials and URL
-FOREMAN_URL="https://<foremanURL>"
-USERNAME="admin"
-PASSWORD="<Foreman_password>"
+# Color variables
+reset=$'\e[0m'
+green=$'\e[1;32m'
+yellow=$'\e[1;33m'
+red=$'\e[1;31m'
 
-# Color definitions
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-NC='\033[0m' # No Color
+# Check for fzf and offer to install if not found
+if ! command -v fzf &> /dev/null; then
+    echo "fzf could not be found."
 
-# Function to display the help menu
-display_help() {
-    cat << EOF
-Usage: $0 [OPTION]
-This is a puppet wrapper script to perform tasks in foreman easily, if you are missing some packages run the script with --prereq.
+    read -r -p "Would you like to install fzf? [Y/n] " response
+    response=${response:-Y}  # Default value is Y
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+    then
+        echo "${yellow}Attempting to install fzf...${reset}"
 
-Available options:
+        # git clone and install fzf
+        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+        ~/.fzf/install
 
-  --prereq  Check for and install missing prerequisites. Ensures jq, curl, fzf,
-            and tmux-xpanes are installed on your machine.
-
-  --help    Display this help menu and exit.
-
-EOF
-}
-
-# Function to check and install prerequisites
-check_and_install_prereqs() {
-    local missing_packages=()
-
-    # List of required packages
-    local required_packages=("jq" "curl" "fzf" "xpanes")
-
-    echo "Checking for required packages..."
-
-    # Check each required package and add to missing list if not installed
-    for pkg in "${required_packages[@]}"; do
-        if ! command -v $pkg &> /dev/null; then
-            echo "$pkg is not installed."
-            missing_packages+=($pkg)
-        fi
-    done
-
-    # If missing packages were found, attempt to install them
-    if [ ${#missing_packages[@]} -ne 0 ]; then
-        echo "Attempting to install missing packages..."
-
-        # Fedora and RHEL 8+ use dnf
-        sudo dnf install -y "${missing_packages[@]}"
-
-        # Fedora and RHEL 8+ use dnf
-        local pkg_manager="dnf"
-    else
-      echo  "All required packages are installed."
-    fi
-}
-
-# Check for the --prereq argument
-if [[ "$1" == "--prereq" ]]; then
-    check_and_install_prereqs
-    exit 0
-fi
-
-# Temporary file for host groups snapshot
-HOST_GROUPS_FILE="/tmp/host_groups.json"
-
-# Ensure jq, curl, fzf, and xpanes are installed
-if ! command -v jq &> /dev/null || ! command -v curl &> /dev/null || ! command -v fzf &> /dev/null || ! command -v xpanes &> /dev/null; then
-    echo -e "${RED}jq, curl, fzf, and xpanes must be installed to run this script.${NC}"
-    echo "Run the script with --prereq flag to auto install prerequisites"
-    exit 1
-fi
-
-# Update the host groups snapshot
-update_host_groups_snapshot() {
-    echo "Updating host groups snapshot..."
-    curl -s -k -u $USERNAME:$PASSWORD "$FOREMAN_URL/api/hostgroups?per_page=1000" | jq '.' > "$HOST_GROUPS_FILE"
-}
-
-# Function to select multiple hosts
-select_hosts() {
-    echo "Fetching hosts..."
-    HOSTS=$(curl -s -k -u $USERNAME:$PASSWORD "$FOREMAN_URL/api/hosts" | jq -r '.results[].name' | grep -v '^$')
-    SELECTED_HOSTS=($(echo "$HOSTS" | fzf --prompt="Select hosts (use TAB to multi-select): " -m))
-
-    if [ ${#SELECTED_HOSTS[@]} -eq 0 ]; then
-        echo -e "${RED}No hosts selected. Exiting.${NC}"
-        exit 0
-    fi
-}
-
-select_environment() {
-    ENVIRONMENTS=$(curl -s -k -u $USERNAME:$PASSWORD "$FOREMAN_URL/api/environments" | jq -r '.results[].name')
-
-    # Display current environments for each selected host
-    echo "Current environments for selected hosts:"
-    for HOST in "${SELECTED_HOSTS[@]}"; do
-        HOST_ENV=$(curl -s -k -u $USERNAME:$PASSWORD "$FOREMAN_URL/api/hosts?search=${HOST}" | jq -r ".results[] | select(.name==\"${HOST}\") | .environment_name")
-        echo "${HOST}: ${HOST_ENV:-'Not Available'}"
-    done
-
-    # After displaying, prompt to select a new environment
-    echo "Press Enter to continue to environment selection..."
-    read  # Wait for user to acknowledge
-
-    SELECTED_ENVIRONMENT=$(echo "$ENVIRONMENTS" | fzf --prompt="Select a new environment: ")
-
-    if [ -z "$SELECTED_ENVIRONMENT" ]; then
-        echo "Environment selection was cancelled or failed. No changes will be made to environments."
-        SELECTED_ENVIRONMENT="unchanged"
-    else
-      echo -e "${RED}Changing to environment: $SELECTED_ENVIRONMENT${NC}"
-    fi
-}
-
-ask_change_host_group() {
-    # First, display the current host group for each selected host
-    echo "Current host groups for selected hosts:"
-    for HOST in "${SELECTED_HOSTS[@]}"; do
-        # Fetch the current host group of the host. Adjust the URL as needed.
-        CURRENT_HOST_GROUP=$(curl -s -k -u $USERNAME:$PASSWORD "$FOREMAN_URL/api/hosts/$HOST" | jq -r '.hostgroup_name // "Not Assigned"')
-        echo "$HOST: $CURRENT_HOST_GROUP"
-    done
-
-    echo "Press Enter to continue to host group selection..."
-    read
-
-    read -r -p "Do you want to change the host group for all selected hosts? [y/N]: " CHANGE_HOST_GROUP
-    if [[ $CHANGE_HOST_GROUP =~ ^[Yy]$ ]]; then
-        HOST_GROUPS=$(jq -r '.results[] | "\(.title)"' "$HOST_GROUPS_FILE" | sort -u)
-        SELECTED_HOST_GROUP=$(echo "$HOST_GROUPS" | fzf --prompt="Select a host group: ")
-
-        if [ -z "$SELECTED_HOST_GROUP" ]; then
-            echo -e "${RED}Host group selection was cancelled. No changes will be made to host groups.${NC}"
-            SELECTED_HOST_GROUP="unchanged"
-        else
-            echo -e "${RED}Selected Host Group: $SELECTED_HOST_GROUP${NC}"
-        fi
-    else
-        SELECTED_HOST_GROUP="unchanged"
-    fi
-}
-
-stop_puppet_agent() {
-    echo -e "${RED}Stopping Puppet service on selected hosts...${NC}"
-    xpanes -c "ssh -t {} 'sudo systemctl stop puppet.service && systemctl status puppet'" "${SELECTED_HOSTS[@]}"
-}
-
-fetch_ids_and_update_hosts() {
-    # Fetch the environment ID
-    ENVIRONMENT_ID=$(curl -s -k -u $USERNAME:$PASSWORD "$FOREMAN_URL/api/environments" | jq --arg ENV_NAME "$SELECTED_ENVIRONMENT" '.results[] | select(.name==$ENV_NAME) | .id' 2>/dev/null)
-
-    # Fetch the host group ID (if the host group change was selected)
-    if [ "$SELECTED_HOST_GROUP" != "unchanged" ]; then
-        HOST_GROUP_ID=$(curl -s -k -u $USERNAME:$PASSWORD "$FOREMAN_URL/api/hostgroups" | jq --arg HG_NAME "$SELECTED_HOST_GROUP" '.results[] | select(.title==$HG_NAME) | .id' 2>/dev/null)
-    fi
-
-    # Update each host
-    for HOST in "${SELECTED_HOSTS[@]}"; do
-        # Construct the JSON payload for the update
-        JSON_PAYLOAD="{\"host\": {\"environment_id\": $ENVIRONMENT_ID"
-
-        if [ "$SELECTED_HOST_GROUP" != "unchanged" ]; then
-            JSON_PAYLOAD+=", \"hostgroup_id\": $HOST_GROUP_ID"
-        fi
-
-        JSON_PAYLOAD+="}}"
-
-        # Fetch host ID by name
-        HOST_ID=$(curl -s -k -u $USERNAME:$PASSWORD "$FOREMAN_URL/api/hosts" | jq --arg HOST_NAME "$HOST" '.results[] | select(.name==$HOST_NAME) | .id' 2>/dev/null)
-
-        # Update the host with the new environment and/or host group
-        curl -s -k -u $USERNAME:$PASSWORD -H "Content-Type: application/json" -X PUT -d "$JSON_PAYLOAD" "$FOREMAN_URL/api/hosts/$HOST_ID" >/dev/null 2>&1
-    done
-}
-
-run_puppet_noop() {
-    echo -e "${GREEN}Running Puppet agent in --noop mode on selected hosts...${NC}"
-    xpanes -c "ssh {} 'sudo puppet agent -t --noop'" "${SELECTED_HOSTS[@]}"
-}
-
-# Parse command line options
-case "$1" in
-    --prereq)
-        check_and_install_prereqs
-        ;;
-    --help)
-        display_help
-        ;;
-    *)
-        if [ -n "$1" ]; then
-            echo "Unknown option: $1"
-            display_help
+        # After installation, you may want to check if fzf is available
+        if ! command -v fzf &> /dev/null; then
+            echo "${red}Installation failed. Please install fzf manually.${reset}"
             exit 1
         fi
-            update_host_groups_snapshot
-            select_hosts
-            stop_puppet_agent
-            select_environment
-            ask_change_host_group
-            fetch_ids_and_update_hosts
-            run_puppet_noop
-        ;;
-esac
+    else
+        echo "${red}Installation cancelled. fzf is required to run this script.${reset}"
+        exit 1
+    fi
+fi
 
-exit 0
+# Catch SIGINT (Ctrl+C) and exit gracefully
+trap 'echo -e "\nProgram terminated by user."; exit' SIGINT
+
+main_menu() {
+  choice=$(printf "Start VM\nStop VM\nTake Snapshot\nRevert to Snapshot\nDelete Snapshot\nList Snapshots\nExit\n" | fzf --prompt="Select an action> " --height=40% --layout=reverse) || exit
+
+  case $choice in
+    "Start VM") start_vm ;;
+    "Stop VM") stop_vm ;;
+    "Take Snapshot") take_snapshot ;;
+    "Revert to Snapshot") revert_snapshot ;;
+    "Delete Snapshot") delete_snapshot ;;
+    "List Snapshots") list_snapshots ;;
+    "Exit") clean_exit ;;
+    *) echo "Invalid option or action cancelled."; main_menu ;;
+  esac
+}
+
+start_vm() {
+  # Get all VMs
+  mapfile -t all_vms < <(VBoxManage list vms | cut -d '"' -f2)
+
+  # Get running VMs
+  mapfile -t running_vms < <(VBoxManage list runningvms | cut -d '"' -f2)
+
+  # Filter out running VMs to get only the powered off VMs
+  powered_off_vms=()
+  for vm in "${all_vms[@]}"; do
+    if [[ ! " ${running_vms[*]} " =~ $vm ]]; then
+      powered_off_vms+=("$vm")
+    fi
+  done
+
+  if [ ${#powered_off_vms[@]} -eq 0 ]; then
+    echo -e "${yellow}All VMs are currently running.${reset}"
+    main_menu
+    return
+  fi
+
+  selected_vms=$(printf "%s\n" "${powered_off_vms[@]}" | fzf --prompt="Start VM(s)> " --height=40% --layout=reverse -m)
+
+  if [ -z "$selected_vms" ]; then
+    echo -e "${yellow}Action cancelled.${reset}"
+    main_menu
+    return
+  fi
+
+  clear # Clear the screen before showing the VM start output
+  for vm in $selected_vms; do
+    echo -e "${yellow}Waiting for VM \"$vm\" to power on...${reset}"
+    if VBoxManage startvm "$vm" --type headless >/dev/null; then
+      echo -e "${green}VM \"$vm\" has been successfully started.${reset}"
+    else
+      echo -e "${red}Failed to start VM \"$vm\".${reset}"
+    fi
+  done
+  echo
+  main_menu
+}
+
+stop_vm() {
+  # Fetch only running VMs
+  mapfile -t running_vms < <(VBoxManage list runningvms | cut -d '"' -f2)
+  if [ ${#running_vms[@]} -eq 0 ]; then
+    echo -e "${red}No running VMs found.${reset}"
+    main_menu
+    return
+  fi
+
+  selected_vms=$(printf "%s\n" "${running_vms[@]}" | fzf --prompt="Stop VM(s)> " --height=40% --layout=reverse -m)
+
+  if [ -z "$selected_vms" ]; then
+    echo -e "${yellow}Action cancelled.${reset}"
+    main_menu
+    return
+  fi
+
+  while IFS= read -r vm; do
+    VBoxManage controlvm "$vm" poweroff >/dev/null 2>&1  # Suppress command output
+    echo -e "${green}$vm stopped.${reset}"
+  done <<< "$selected_vms"
+  main_menu
+}
+
+take_snapshot() {
+  mapfile -t my_vms < <(VBoxManage list vms | cut -d '"' -f2)
+  vm=$(printf "%s\n" "${my_vms[@]}" | fzf --prompt="Snapshot> " --height=40% --layout=reverse)
+
+  if [ -z "$vm" ]; then
+    echo -e "${red}Action cancelled.${reset}"
+    main_menu
+    return
+  fi
+
+  read -rp "Enter snapshot name: " snap_name
+  VBoxManage snapshot "$vm" take "$snap_name" >/dev/null 2>&1
+  echo -e "${green}Snapshot '$snap_name' taken for $vm.${reset}"
+  main_menu
+}
+
+delete_snapshot() {
+  # Filter VMs to only those with snapshots
+  vms_with_snapshots=()
+  while IFS= read -r line; do
+    vm=$(echo "$line" | cut -d '"' -f2)
+    if VBoxManage snapshot "$vm" list &>/dev/null; then
+      vms_with_snapshots+=("$vm")
+    fi
+  done < <(VBoxManage list vms)
+
+  if [ ${#vms_with_snapshots[@]} -eq 0 ]; then
+    echo -e "${red}No VMs with snapshots found.${reset}"
+    main_menu
+    return
+  fi
+
+  vm=$(printf "%s\n" "${vms_with_snapshots[@]}" | fzf --prompt="Select VM to delete snapshot from> " --height=40% --layout=reverse)
+  if [ -z "$vm" ]; then
+    echo -e "${red}Action cancelled.${reset}"
+    main_menu
+    return
+  fi
+
+  # Proceed to select and delete snapshot
+  snapshots=($(VBoxManage snapshot "$vm" list --machinereadable | grep '^SnapshotName=' | cut -d'=' -f2 | tr -d '"'))
+  if [ ${#snapshots[@]} -eq 0 ]; then
+    echo -e "${yellow}No snapshots found for $vm.${reset}"
+    main_menu
+    return
+  fi
+
+  snapshot_name=$(printf "%s\n" "${snapshots[@]}" | fzf --prompt="Select Snapshot to delete> " --height=40% --layout=reverse)
+  if [ -z "$snapshot_name" ]; then
+    echo -e "${red}Action cancelled.${reset}"
+    main_menu
+    return
+  fi
+
+  VBoxManage snapshot "$vm" delete "$snapshot_name" >/dev/null 2>&1
+  echo -e "${green}Snapshot '$snapshot_name' deleted from $vm.${reset}"
+  main_menu
+}
+
+revert_snapshot() {
+  # Filter VMs to only those with snapshots
+  vms_with_snapshots=()
+  while IFS= read -r line; do
+    vm=$(echo "$line" | cut -d '"' -f2)
+    if VBoxManage snapshot "$vm" list &>/dev/null; then
+      vms_with_snapshots+=("$vm")
+    fi
+  done < <(VBoxManage list vms)
+
+  if [ ${#vms_with_snapshots[@]} -eq 0 ]; then
+    echo "No VMs with snapshots found."
+    main_menu
+    return
+  fi
+
+  vm=$(printf "%s\n" "${vms_with_snapshots[@]}" | fzf --prompt="Select VM to revert> " --height=40% --layout=reverse)
+  if [ -z "$vm" ]; then
+    echo "Action cancelled."
+    main_menu
+    return
+  fi
+
+  # Fetch snapshots for the selected VM
+  mapfile -t snapshots < <(VBoxManage snapshot "$vm" list --machinereadable | grep '^SnapshotName=' | cut -d'=' -f2 | tr -d '"')
+
+  if [ ${#snapshots[@]} -eq 0 ]; then
+    echo "No snapshots found for $vm."
+    main_menu
+    return
+  fi
+
+  snapshot_name=$(printf "%s\n" "${snapshots[@]}" | fzf --prompt="Select Snapshot> " --height=40% --layout=reverse)
+
+  if [ -n "$snapshot_name" ]; then
+    VBoxManage snapshot "$vm" restore "$snapshot_name"
+    echo "Snapshot '$snapshot_name' reverted for $vm."
+  else
+    echo "Action cancelled."
+  fi
+  main_menu
+}
+
+list_snapshots() {
+  # Fetch all VMs
+  mapfile -t all_vms < <(VBoxManage list vms | cut -d '"' -f2)
+
+  if [ ${#all_vms[@]} -eq 0 ]; then
+    echo -e "${yellow}No VMs found.${reset}"
+    return
+  fi
+
+  echo -e "${green}Listing all snapshots for each VM:${reset}"
+
+  for vm in "${all_vms[@]}"; do
+    echo -e "\n${yellow}VM: $vm${reset}"
+
+    # Fetch snapshots for the VM
+    snapshots=$(VBoxManage snapshot "$vm" list)
+
+    if [ -z "$snapshots" ]; then
+      echo -e "${red}No snapshots found for $vm.${reset}"
+    else
+      echo "$snapshots"
+    fi
+  done
+  main_menu
+}
+
+# Stores all currently installed VMs into an array
+my_vms=()
+while IFS= read -r line; do
+  my_vms+=( "$line" )
+done < <(VBoxManage list vms | cut -d '"' -f2)
+
+clean_exit() {
+  echo -e "${GREEN}Exiting program. Goodbye!${reset}"
+  exit 0
+}
+
+main_menu
 ```

@@ -1,63 +1,10 @@
----
-title: "Fuzzyfinder for foreman environments and hostgroups"
-categories:
-  - Workflow
-tags:
-  - puppet
-  - foreman
-  - fzf
-last_modified_at: 2024-02-24
----
-
-## Intro
-This guide provides a script and a short and simple explanation on how to effectively manage foreman host groups and environments for servers.
-
-**Why should you care, and why should you use it?**
-
-Without this script, the typical workflow for those familiar with Foreman and Git is as follows:
-* Make changes and push them to Git.
-* Log onto the hosts with SSH and stop the Puppet service.
-* Open a GUI and search for the hosts you want to test the changes on.
-* Change the environment using the dropdown menu.
-* Return to the terminal, open an SSH session, and run puppet agent -t --noop to check if the code you just pushed to Git works as intended.
-* Merge the Git branch, return to the Foreman GUI, and change the hosts back to, for example, the production environment.
-* Log onto the servers with SSH and start the Puppet service again.
-This workflow is cumbersome, especially when managing multiple hosts with different hostnames, as it involves frequent back-and-forth navigation in a GUI, which can be time-consuming.
-
-This wrapper script completely transforms this process, allowing you to make these changes on as many hosts as you want quickly using FZF tab selection.
-It simplifies the above workflow to the following steps:
-* Make changes and push them to Git.
-* Run the wrapper script and tab select the hosts for which you want to change the environment, or optionally the host group, (which by default is set not to change).
-* It automatically stops the Puppet service before changing the environment.
-* It also automatically opens new panes with the selected hosts and starts a puppet agent -t --noop run after the environment or host group has been changed.
-
-A feature that will be added really soon is to automaticly start the puppet service again after the user has checked the --noop panes. Also the possibilty to change multiple diffrent environments and host groups for diffrent hosts.
-Eventually it will be integrated to my "git add, commit, push" script for an even more efficent workflow - this will be explained in a future post.
-
-## Disclaimer
-This script is provided as-is without any support, and I strongly encourage you to thoroughly test it in a test environment before implementing it in a production setting.
-It is designed solely with my own workflow in mind, which primarily revolves around using the CLI.
-Therefore, I will not modify it to suit anyone else's workflow. However, if you have any suggestions for improvement, feel free to contact me. I will consider implementing changes if I find the ideas beneficial.
-
-It is strongly encouraged that you use this script with the password manager pass to enable you to have the foreman password encrypted with a GPG key.
-This setup is out of scope for this post but i will create another post soon about how you can set that up.
-In the script included the password in clear text, i strongly encourage you not to do this in a production environment for obvious reason.
-
-## Prerequisites
-(All these can be installed on RHEL and Fedora by running the script with the --prereq flag)
-- Fzf
-- Jq
-- Xpanes
-- Tmux
-- Fingers (not optional)
-
-## Setup
-Simply create a file and call it whatever you want, i called mine pwr for easy access and put it in my PATH (~/.local/bin/pwr)
-Or just download the script directly from this link: [Download Script](/downloads/pwr)
-Then make it executable with ```chmod +x ~/.local/bin/pwr```
-
-```bash
 #!/bin/bash
+
+# Description:
+#License: MIT License
+# Tool to easily control foreman environments and hostgroups from the CLI
+# Written by: André Hansen
+# Github: https://github.com/Andr0id88
 
 # Foreman API credentials and URL
 FOREMAN_URL="https://<foremanURL>"
@@ -68,7 +15,7 @@ PASSWORD="<Foreman_password>"
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 # Function to display the help menu
 display_help() {
@@ -266,4 +213,3 @@ case "$1" in
 esac
 
 exit 0
-```

@@ -31,7 +31,7 @@ feature_row:
     excerpt: "Buildt in auto increment of names and port numbers"
 ---
 
-{% include feature_row id="intro" type="center" %}
+{% include feature_row type="center" %}
 
 ## Prerequisites
 - Fzf

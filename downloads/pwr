@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Description:
-#License: MIT License
-# Tool to easily control foreman environments and hostgroups from the CLI
+# Description: Tool to easily control foreman environments and hostgroups from the CLI
+# License: MIT License
 # Written by: André Hansen
 # Github: https://github.com/Andr0id88
+# Linkedin: www.linkedin.com/in/andré-hansen-77914a1a1
 
 # Foreman API credentials and URL
 FOREMAN_URL="https://<foremanURL>"

@@ -34,6 +34,7 @@ The script facilitates comprehensive control over various aspects of container m
 ## Preview
 
 {% include feature_row id="intro" type="center" %}
+{% include feature_row %}
 
 ## Prerequisites
 - Fzf

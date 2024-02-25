@@ -14,7 +14,7 @@ last_modified_at: 2024-02-25
 #### Importance and Utility
 This script, like many others I have developed, is designed to enhance efficiency and save time. It provides a streamlined method for managing container lifecycles directly from the Command Line Interface (CLI) with minimal effort.
 
-The script facilitates comprehensive control over various aspects of container management, including creation, deletion, purging, and executing operations within containers. Additionally, it features built-in support for port and name incrementation for basic service containers, facilitating simultaneous operation of multiple instances, such as multiple NGINX, without port or name conflicts. It supports the deployment of various containers, including NGINX, MySQL, MongoDB, MariaDB, and HTTPD, with simple keystrokes and without the need for CLI commands.
+The script facilitates comprehensive control over various aspects of container management, including creation, deletion, purging, and executing operations within containers. Additionally, it features built-in support for port and name incrementation for basic service containers, facilitating simultaneous operation of multiple instances, such as multiple NGINX, without port or name conflicts. It supports the deployment of various containers, including NGINX, MySQL, MongoDB, MariaDB, and HTTPD, Portainer, with few keystrokes and without the need for CLI commands.
 
 
 ## Preview

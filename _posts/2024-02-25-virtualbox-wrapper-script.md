@@ -11,16 +11,15 @@ intro:
   - excerpt: "Here are some pictures that illustrate how some of the features looks like in action, the script itself is quite self explanatory."
 
 feature_row:
-  - image_path: /assets/images/vmctlmenu.png
+  - image_path: /assets/images/vmctl1.png
     title: "Simple menu"
-    excerpt: "Simple and quick to use"
-  - image_path: /assets/images/vmctl-start-stop-multi.png
+    excerpt: "Simple and easy to use"
+  - image_path: /assets/images/vmctl2.png
     title: "Control multiple vm's"
     excerpt: "Start stop multiple vm's with a few keystrokes"
-  - image_path: /assets/images/vmctl-snapshots.png
+  - image_path: /assets/images/vmctl3.png
     title: "Snapshot mgmt"
     excerpt: "Take snapshots, revert to snapshot quick and easy"
----
 ---
 
 ## Intro

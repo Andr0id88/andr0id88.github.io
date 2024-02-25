@@ -6,7 +6,7 @@ tags:
   - Rofi
   - Snippets
 
-last_modified_at: 2023-05-30
+last_modified_at: 2024-02-16
 ---
 
 ## Intro

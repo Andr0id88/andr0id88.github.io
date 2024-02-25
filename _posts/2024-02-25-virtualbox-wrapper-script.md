@@ -6,6 +6,21 @@ tags:
   - virtualbox
   - fzf
 last_modified_at: 2024-02-25
+
+intro:
+  - excerpt: "Here are some pictures that illustrate how some of the features looks like in action, the script itself is quite self explanatory."
+
+feature_row:
+  - image_path: /assets/images/vmctlmenu.png
+    title: "Simple menu"
+    excerpt: "Simple and quick to use"
+  - image_path: /assets/images/vmctl-start-stop-multi.png
+    title: "Control multiple vm's"
+    excerpt: "Start stop multiple vm's with a few keystrokes"
+  - image_path: /assets/images/vmctl-snapshots.png
+    title: "Snapshot mgmt"
+    excerpt: "Take snapshots, revert to snapshot quick and easy"
+---
 ---
 
 ## Intro
@@ -26,6 +41,11 @@ And if you have any ideas on how to improve this, feel free to contact me.
 - Virtualbox
 - VM's in virtual box
 - Fingers (not optional)
+
+## Preview
+
+{% include feature_row id="intro" type="center" %}
+{% include feature_row %}
 
 ## Setup
 Simply create a file and call it whatever you want, i called mine vmctl for easy access and put it in my PATH (~/.local/bin/vmctl)

@@ -29,6 +29,9 @@ Simply create a file and call it whatever you want, i called mine vmctl for easy
 Or download the script directly from this link: [Download Script](/downloads/vmctl)
 Then make it executable with ```chmod +x ~/.local/bin/vmctl```
 
+You are then able to run the script from anywere by using the ```vmctl``` command.
+From here you can start\stop multiple vm's by tab selecting them with fzf.
+You can also take and delete snapshots and revert to snapshots - it will automaticly filter out hosts that does not have snapshots from the list.
 
 ```bash
 #!/bin/bash

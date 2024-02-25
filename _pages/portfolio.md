@@ -70,12 +70,13 @@ In my personal capacity, I maintain an extensive homelab environment consisting 
 
 ## Courses
 
-| Subject                                     | Employer           | Year |
-|---------------------------------------------|--------------------|------|
-| RHCSA - Redhat certified system administrator | Norsk Helsenett SF | 2024 |
-| CKA - Certified Kubernetes Admin            | Norsk Helsenett SF | 2023 |
-| Puppet Essentials                           | Norsk Helsenett SF | 2022 |
-| Puppet Beginner Course                      | Norsk Helsenett SF | 2021 |
+| Subject                                      | Employer           | Year |
+|----------------------------------------------|--------------------|------|
+| RHCSA - Redhat Certified System Administrator | Norsk Helsenett SF | 2024 |
+| HC Vault - HashiCorp Vault Enterprise Academy | Norsk Helsenett SF | 2024 |
+| CKA - Certified Kubernetes Admin             | Norsk Helsenett SF | 2023 |
+| Puppet Essentials                            | Norsk Helsenett SF | 2022 |
+| Puppet Beginner Course                       | Norsk Helsenett SF | 2021 |
 
 
 ## Skills

@@ -12,7 +12,7 @@ intro:
   - excerpt: "Here are some pictures that illustrate how some of the features looks like in action, the script itself is quite self explanatory."
 
 feature_row:
-  - image_path: assets/images/delete-containers3.png
+  - image_path: /assets/images/delete-containers3.png
     title: "Multi select"
     excerpt: "Stop and delete multiple containers with minimum hassle"
   - image_path: /assets/images/start-service.png

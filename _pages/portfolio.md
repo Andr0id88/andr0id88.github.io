@@ -54,6 +54,8 @@ Currently, I am actively engaged in setting up the Ansible Automation Platform t
 When I initially joined NHN Linux, the concept of using Linux as an office computer seemed unattainable. However, I am proud to be part of a significant project that aims to change that perception. We are in the final stages of being able to offer Linux as a work laptop, with Satellite and Insights playing a crucial role in this endeavor. Personally, as a beta tester for this new Linux laptop, I have witnessed a remarkable increase in my productivity.
 #### Cyberark
 Another ongoing project I have been involved in is the implementation of Cyberark systems to enhance the security of both our Linux and Windows servers in the infrastructure. This project continues to expand each year, incorporating new components and integrations.
+#### Hashicorp Vault
+A pivotal project I've been involved in is the implementation of HashiCorp Vault across our organization. Recognizing the need for robust secrets management and data protection, our team embarked on the initiative to deploy Vault, aimed at securing, storing, and tightly controlling access to tokens, passwords, certificates, API keys, and other secrets in modern computing. The setup process entailed a comprehensive evaluation of our security needs, followed by the collaborative customization and deployment of Vault to meet these requirements within a highly regulated healthcare sector environment.
 #### Homelab
 In my personal capacity, I maintain an extensive homelab environment consisting of Kubernetes clusters running AWX, Gitea, Jenkins, and other tools. Additionally, I manage multiple virtual machines running Foreman, as well as test VMs with various web servers and databases for automation testing and experimentation. I also maintain a few Windows VMs as victims for my Kali Linux machine.
 
@@ -68,11 +70,12 @@ In my personal capacity, I maintain an extensive homelab environment consisting 
 
 ## Courses
 
-| Subject                           | Employer               |      Year      |
-| :-------------------------------- | :--------------------: | -------------- |
-| CKA - Certified kubernetes admin  |   Norsk Helsenett SF   |      2023      |
-| Puppet essentials                 |   Norsk Helsenett SF   |      2022      |
-| Puppet beginner course            |   Norsk Helsenett SF   |      2021      |
+| Subject                                     | Employer           | Year |
+|---------------------------------------------|--------------------|------|
+| RHCSA - Redhat certified system administrator | Norsk Helsenett SF | 2024 |
+| CKA - Certified Kubernetes Admin            | Norsk Helsenett SF | 2023 |
+| Puppet Essentials                           | Norsk Helsenett SF | 2022 |
+| Puppet Beginner Course                      | Norsk Helsenett SF | 2021 |
 
 
 ## Skills

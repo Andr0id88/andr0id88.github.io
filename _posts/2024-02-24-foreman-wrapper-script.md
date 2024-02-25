@@ -53,8 +53,8 @@ In the script included the password in clear text, i strongly encourage you not 
 
 ## Setup
 Simply create a file and call it whatever you want, i called mine pwr for easy access and put it in my PATH (~/.local/bin/pwr)
-Or just download the script directly from this link: [Download Script](/downloads/pwr)
-Then make it executable with ```chmod +x ~/.local/bin/pwr```
+Or just download the script directly from [this link](/downloads/pwr)
+Then make it executable by running this command ```chmod +x ~/Downloads/pwr && mv ~/Downloads/pwr ~/.local/bin/pwr```
 
 ```bash
 #!/bin/bash

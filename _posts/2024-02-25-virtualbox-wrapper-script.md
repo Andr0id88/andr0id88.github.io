@@ -17,6 +17,9 @@ It lets you control VM's directly from the CLI and it is really easy to use.
 Im a big fan of using vagrant for spinning up vm's on the fly and then destroying them easily.
 With that said i have a home lab in which i want things to be running permanently in VM's, for this usecase i want the extra features of virtualbox such as snapshots and so on.
 
+Same as my other scripts i still have some improvment ideas i will implement in the future, those will be documented in the top of the script as like this```# changelog: <changes made> ```
+And if you have any ideas on how to improve this, feel free to contact me.
+
 ## Prerequisites
 (All these can be installed on RHEL and Fedora by running the script with the --prereq flag)
 - Fzf
@@ -26,8 +29,8 @@ With that said i have a home lab in which i want things to be running permanentl
 
 ## Setup
 Simply create a file and call it whatever you want, i called mine vmctl for easy access and put it in my PATH (~/.local/bin/vmctl)
-Or download the script directly from this link: [Download Script](/downloads/vmctl)
-Then make it executable with ```chmod +x ~/.local/bin/vmctl```
+Or download the script directly from [this link](/downloads/vmctl)
+Then make it executable by running this command ```chmod +x ~/Downloads/vmctl && mv ~/Download/vmctl ~/.local/bin/vmctl```
 
 You are then able to run the script from anywere by using the ```vmctl``` command.
 From here you can start\stop multiple vm's by tab selecting them with fzf.
@@ -39,6 +42,7 @@ You can also take and delete snapshots and revert to snapshots - it will automat
 # Tool to easily control VM's from the CLI
 # Written by: André Hansen
 # Github: https://github.com/Andr0id88
+
 #License: MIT License
 
 # Color variables

@@ -57,11 +57,9 @@ You can also take and delete snapshots and revert to snapshots - it will automat
 
 ```bash
 #!/bin/bash
-# Description: Tool to easily control VM's from the CLI
-# License: MIT License
-# Written by: André Hansen
-# Github: https://github.com/Andr0id88
-# Linkedin: www.linkedin.com/in/andré-hansen-77914a1a1
+# Description:
+# Tool to easily control VM's from the CLI
+# Written by: André Hansen - Andr0id88 on github.
 
 # Color variables
 reset=$'\e[0m'
@@ -69,17 +67,21 @@ green=$'\e[1;32m'
 yellow=$'\e[1;33m'
 red=$'\e[1;31m'
 
+# Catch SIGINT (Ctrl+C) and exit gracefully
+trap 'echo -e "\nProgram terminated by user."; exit' SIGINT
+
 # Check for fzf and offer to install if not found
 if ! command -v fzf &> /dev/null; then
-    echo "fzf could not be found."
+    echo "${yellow}fzf could not be found.${reset}"
 
+    # Default to Yes if the user presses enter without giving an answer:
     read -r -p "Would you like to install fzf? [Y/n] " response
     response=${response:-Y}  # Default value is Y
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
     then
         echo "${yellow}Attempting to install fzf...${reset}"
 
-        # git clone and install fzf
+        # Git clone and install fzf
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
         ~/.fzf/install
 
@@ -93,9 +95,6 @@ if ! command -v fzf &> /dev/null; then
         exit 1
     fi
 fi
-
-# Catch SIGINT (Ctrl+C) and exit gracefully
-trap 'echo -e "\nProgram terminated by user."; exit' SIGINT
 
 main_menu() {
   choice=$(printf "Start VM\nStop VM\nTake Snapshot\nRevert to Snapshot\nDelete Snapshot\nList Snapshots\nExit\n" | fzf --prompt="Select an action> " --height=40% --layout=reverse) || exit
@@ -141,7 +140,7 @@ start_vm() {
     return
   fi
 
-  clear # Clear the screen before showing the VM start output
+  clear
   for vm in $selected_vms; do
     echo -e "${yellow}Waiting for VM \"$vm\" to power on...${reset}"
     if VBoxManage startvm "$vm" --type headless >/dev/null; then
@@ -195,89 +194,90 @@ take_snapshot() {
 }
 
 delete_snapshot() {
-  # Filter VMs to only those with snapshots
-  vms_with_snapshots=()
-  while IFS= read -r line; do
-    vm=$(echo "$line" | cut -d '"' -f2)
-    if VBoxManage snapshot "$vm" list &>/dev/null; then
-      vms_with_snapshots+=("$vm")
+    # Filter VMs to only those with snapshots
+    vms_with_snapshots=()
+    while IFS= read -r line; do
+        vm=$(echo "$line" | cut -d '"' -f2)
+        if VBoxManage snapshot "$vm" list &>/dev/null; then
+            vms_with_snapshots+=("$vm")
+        fi
+    done < <(VBoxManage list vms)
+
+    if [ ${#vms_with_snapshots[@]} -eq 0 ]; then
+        echo -e "${red}No VMs with snapshots found.${reset}"
+        main_menu
+        return
     fi
-  done < <(VBoxManage list vms)
 
-  if [ ${#vms_with_snapshots[@]} -eq 0 ]; then
-    echo -e "${red}No VMs with snapshots found.${reset}"
+    vm=$(printf "%s\n" "${vms_with_snapshots[@]}" | fzf --prompt="Select VM to delete snapshot from> " --height=40% --layout=reverse)
+    if [ -z "$vm" ]; then
+        echo -e "${red}Action cancelled.${reset}"
+        main_menu
+        return
+    fi
+
+    # Use mapfile to properly read the snapshot names into an array
+    mapfile -t snapshots < <(VBoxManage snapshot "$vm" list --machinereadable | grep '^SnapshotName=' | cut -d'=' -f2 | tr -d '"')
+
+    if [ ${#snapshots[@]} -eq 0 ]; then
+        echo -e "${yellow}No snapshots found for $vm.${reset}"
+        main_menu
+        return
+    fi
+
+    snapshot_name=$(printf "%s\n" "${snapshots[@]}" | fzf --prompt="Select Snapshot to delete> " --height=40% --layout=reverse)
+    if [ -z "$snapshot_name" ]; then
+        echo -e "${red}Action cancelled.${reset}"
+        main_menu
+        return
+    fi
+
+    VBoxManage snapshot "$vm" delete "$snapshot_name" >/dev/null 2>&1
+    echo -e "${green}Snapshot '$snapshot_name' deleted from $vm.${reset}"
     main_menu
-    return
-  fi
-
-  vm=$(printf "%s\n" "${vms_with_snapshots[@]}" | fzf --prompt="Select VM to delete snapshot from> " --height=40% --layout=reverse)
-  if [ -z "$vm" ]; then
-    echo -e "${red}Action cancelled.${reset}"
-    main_menu
-    return
-  fi
-
-  # Proceed to select and delete snapshot
-  snapshots=($(VBoxManage snapshot "$vm" list --machinereadable | grep '^SnapshotName=' | cut -d'=' -f2 | tr -d '"'))
-  if [ ${#snapshots[@]} -eq 0 ]; then
-    echo -e "${yellow}No snapshots found for $vm.${reset}"
-    main_menu
-    return
-  fi
-
-  snapshot_name=$(printf "%s\n" "${snapshots[@]}" | fzf --prompt="Select Snapshot to delete> " --height=40% --layout=reverse)
-  if [ -z "$snapshot_name" ]; then
-    echo -e "${red}Action cancelled.${reset}"
-    main_menu
-    return
-  fi
-
-  VBoxManage snapshot "$vm" delete "$snapshot_name" >/dev/null 2>&1
-  echo -e "${green}Snapshot '$snapshot_name' deleted from $vm.${reset}"
-  main_menu
 }
 
 revert_snapshot() {
-  # Filter VMs to only those with snapshots
-  vms_with_snapshots=()
-  while IFS= read -r line; do
-    vm=$(echo "$line" | cut -d '"' -f2)
-    if VBoxManage snapshot "$vm" list &>/dev/null; then
-      vms_with_snapshots+=("$vm")
+    # Filter VMs to only those with snapshots
+    vms_with_snapshots=()
+    while IFS= read -r line; do
+        vm=$(echo "$line" | cut -d '"' -f2)
+        if VBoxManage snapshot "$vm" list &>/dev/null; then
+            vms_with_snapshots+=("$vm")
+        fi
+    done < <(VBoxManage list vms)
+
+    if [ ${#vms_with_snapshots[@]} -eq 0 ]; then
+        echo "No VMs with snapshots found."
+        main_menu
+        return
     fi
-  done < <(VBoxManage list vms)
 
-  if [ ${#vms_with_snapshots[@]} -eq 0 ]; then
-    echo "No VMs with snapshots found."
+    vm=$(printf "%s\n" "${vms_with_snapshots[@]}" | fzf --prompt="Select VM to revert> " --height=40% --layout=reverse)
+    if [ -z "$vm" ]; then
+        echo "Action cancelled."
+        main_menu
+        return
+    fi
+
+    # Fetch snapshots for the selected VM
+    mapfile -t snapshots < <(VBoxManage snapshot "$vm" list --machinereadable | grep '^SnapshotName=' | cut -d'=' -f2 | tr -d '"')
+
+    if [ ${#snapshots[@]} -eq 0 ]; then
+        echo "No snapshots found for $vm."
+        main_menu
+        return
+    fi
+
+    snapshot_name=$(printf "%s\n" "${snapshots[@]}" | fzf --prompt="Select Snapshot> " --height=40% --layout=reverse)
+
+    if [ -n "$snapshot_name" ]; then
+        VBoxManage snapshot "$vm" restore "$snapshot_name"
+        echo "Snapshot '$snapshot_name' reverted for $vm."
+    else
+        echo "Action cancelled."
+    fi
     main_menu
-    return
-  fi
-
-  vm=$(printf "%s\n" "${vms_with_snapshots[@]}" | fzf --prompt="Select VM to revert> " --height=40% --layout=reverse)
-  if [ -z "$vm" ]; then
-    echo "Action cancelled."
-    main_menu
-    return
-  fi
-
-  # Fetch snapshots for the selected VM
-  mapfile -t snapshots < <(VBoxManage snapshot "$vm" list --machinereadable | grep '^SnapshotName=' | cut -d'=' -f2 | tr -d '"')
-
-  if [ ${#snapshots[@]} -eq 0 ]; then
-    echo "No snapshots found for $vm."
-    main_menu
-    return
-  fi
-
-  snapshot_name=$(printf "%s\n" "${snapshots[@]}" | fzf --prompt="Select Snapshot> " --height=40% --layout=reverse)
-
-  if [ -n "$snapshot_name" ]; then
-    VBoxManage snapshot "$vm" restore "$snapshot_name"
-    echo "Snapshot '$snapshot_name' reverted for $vm."
-  else
-    echo "Action cancelled."
-  fi
-  main_menu
 }
 
 list_snapshots() {

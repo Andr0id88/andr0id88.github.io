@@ -72,6 +72,7 @@ In my personal capacity, I maintain an extensive homelab environment consisting 
 
 | Subject                                      | Employer           | Year |
 |----------------------------------------------|--------------------|------|
+| RHCE - Redhat Certified Engineer             | Norsk Helsenett SF | 2024 |
 | RHCSA - Redhat Certified System Administrator | Norsk Helsenett SF | 2024 |
 | HC Vault - HashiCorp Vault Enterprise Academy | Norsk Helsenett SF | 2024 |
 | CKA - Certified Kubernetes Admin             | Norsk Helsenett SF | 2023 |

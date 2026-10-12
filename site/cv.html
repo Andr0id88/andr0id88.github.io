@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<!-- Printable CV source, kept separate from the interactive portfolio layout. -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="André Hansen, Senior System Engineer. Linux infrastructure, Kubernetes, platform operations, and automation in Go and Python.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#111315">
+  <title>André Hansen | Senior System Engineer</title>
+  <link rel="stylesheet" href="cv.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page">
+    <header class="header">
+      <a class="identity" href="#main" aria-label="André Hansen, top of CV"><span class="monogram" aria-hidden="true">ah<span>.</span></span><span>ANDRÉ HANSEN</span></a>
+      <nav aria-label="Main navigation"><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#contact">Contact <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="main">
+      <section class="intro" aria-labelledby="name">
+        <div class="eyebrow">LINUX / KUBERNETES / PLATFORM ENGINEERING</div>
+        <h1 id="name">André Hansen<span>.</span></h1>
+        <p class="headline">Senior System Engineer</p>
+        <div class="print-only cv-contact"><a href="mailto:1988.hansen@gmail.com">1988.hansen@gmail.com</a> · <a href="https://github.com/andr0id88">GitHub: andr0id88</a> · <a href="https://www.linkedin.com/in/andr%C3%A9-hansen-77914a1a1/">LinkedIn</a></div>
+        <div class="intro-grid">
+          <div>
+            <p class="summary">I operate Linux infrastructure and Kubernetes platforms supporting national healthcare services in Norway. My work combines hands-on operations, troubleshooting, incident response, and automation.</p>
+            <p class="summary">I also build practical tools that make platforms easier to understand and operate. Much of my recent development work is in <strong>Go</strong>. I also work with Bash and am familiar with Python.</p>
+            <div class="actions"><a class="button primary" href="andre-hansen-cv.pdf" download="Andre-Hansen-CV.pdf">Download CV <span aria-hidden="true">↓</span></a><a class="text-link" href="#projects">View projects <span aria-hidden="true">↓</span></a><a class="text-link" href="#contact">Contact me <span aria-hidden="true">↗</span></a></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="achievements" aria-labelledby="achievements-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">01 /</span><h2 id="achievements-heading">Selected<br class="desktop-break"> achievements</h2></div>
+        <div class="section-body">
+          <p class="section-note">Highlights from previous work. Figures describe the environments and projects at the time.</p>
+          <div class="achievement-grid">
+            <article class="achievement achievement-lead"><span class="eyebrow">TANZU TO VITISTACK</span><h3>Kubernetes platform migration</h3><p>Contributed to building Vitistack and the transition from Tanzu for platforms supporting national healthcare services. My work spans Kubernetes, Talos, platform upgrades, and operational automation.</p></article>
+            <article class="achievement"><h3>1,400+ Linux servers</h3><p>Worked with a Linux estate of more than 1,400 servers, including third-line troubleshooting and on-call responsibilities.</p></article>
+            <article class="achievement"><h3>~1,400 servers migrated</h3><p>Contributed to the migration of approximately 1,400 servers to a new Red Hat Satellite environment.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects" aria-labelledby="projects-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">02 /</span><h2 id="projects-heading">Selected<br class="desktop-break"> projects</h2></div>
+        <div class="section-body">
+          <article class="project-row migration-project"><span class="project-type">KUBERNETES MIGRATION / TEAM CONTRIBUTION</span><h3>Tanzu to Vitistack</h3><p>As part of the Kubernetes team, I have contributed to building Vitistack and migrating from Tanzu. This work brings together platform operations, Kubernetes upgrades, Talos, and automation in an environment supporting national healthcare services.</p><p>Alongside the migration, I develop Viti Center to make platform state, migration progress, and resilience risks visible to the operations team.</p></article>
+          <article class="project-feature">
+            <div class="project-top"><span class="eyebrow">INTEGRATED PLATFORM OPERATIONS</span><span class="badge">Internal project</span></div>
+            <h3>Viti Center</h3>
+            <p class="project-lead">From cluster requests to day-to-day platform operations.</p>
+            <p class="print-only cv-project-summary">I develop Viti Center, a Go-based operations platform with a central hub and distributed agents. It connects Kubernetes/Talos, KubeVirt, Ceph, Argo CD, ROR, and Slack/vitibot. Its scope includes cluster provisioning and lifecycle workflows, upgrade readiness, access and metadata management, migration tracking, and resilience diagnostics. It makes placement and anti-affinity risks visible and brings request progress and infrastructure findings into one operational workspace.</p>
+            <div class="project-detail"><h4>What I build</h4><p>I develop Viti Center, a Go-based platform that connects infrastructure diagnostics with the workflows needed to operate Vitistack. It brings requests, provisioning, cluster lifecycle, access, and platform health into one workspace, alongside my contribution to the Tanzu-to-Vitistack migration.</p></div>
+            <div class="integration-grid" aria-label="Viti Center integrations and capabilities">
+              <div><h4>Requests &amp; provisioning</h4><p>Connects Slack/vitibot requests to cluster creation, changes, deletion, access, and ROR project workflows. Tracks provisioning stages and supports completion notifications to requesters.</p></div>
+              <div><h4>Cluster lifecycle</h4><p>Combines Kubernetes and Talos inventory with upgrade readiness, version checks, and reviewed workflows for provisioning, scaling, and decommissioning clusters.</p></div>
+              <div><h4>Tooling &amp; access</h4><p>Integrates Argo CD application health and drift with ROR inventory, project metadata, and access management. Provides controlled tooling actions and records administrative activity.</p></div>
+              <div><h4>Infrastructure &amp; resilience</h4><p>Brings together KubeVirt placement and capacity, Ceph storage health, operator diagnostics, and networking information. Highlights workloads exposed to a single worker-node failure and makes placement and anti-affinity risks actionable.</p></div>
+            </div>
+            <div class="project-detail architecture-detail"><h4>Engineering scope</h4><p>A Go hub and distributed agents collect information across sites and clusters. Operational workflows include permission checks, plan review, and audit records. Missing or stale reports remain visible, so incomplete information is not mistaken for a healthy platform.</p></div>
+            <div class="project-detail"><h4>Practical value</h4><p>An operator can follow a request from its Slack entry into provisioning, investigate the resulting cluster and its tooling, and review migration progress or resilience findings in the same workspace. The project connects the operational context that would otherwise need to be assembled across separate systems.</p></div>
+            <p class="project-note">Internal project at Norsk helsenett SF. Integration capabilities depend on configuration and access permissions.</p>
+          </article>
+          <article class="project-row automation-project">
+            <span class="project-type">LINUX / PLATFORM / SECURITY</span>
+            <h3>Automation &amp; tooling</h3>
+            <p>I automate recurring Linux and Kubernetes operations, from rebuilding infrastructure to upgrading platforms and rotating SSH keys.</p>
+            <dl class="automation-list">
+              <div><dt>Red Hat Satellite lifecycle</dt><dd>Automated Satellite installation, configuration and rebuilds with Ansible and Hammer, making deployments repeatable and simplifying maintenance. This complemented my contribution to migrating approximately 1,400 servers to a new Satellite environment.</dd></div>
+              <div><dt>Kubernetes upgrade tooling</dt><dd>Built tooling for recurring Kubernetes upgrade tasks in Tanzu and Talos environments, helping standardise platform maintenance and reduce manual work.</dd></div>
+              <div><dt>CyberArk SSH-key rotation</dt><dd>Automated SSH-key rotation through the CyberArk API, reducing manual credential handling across Linux infrastructure.</dd></div>
+              <div><dt>Satellite &amp; Insights incident response</dt><dd>Built tools using the Satellite and Insights APIs to bring Linux fleet information into investigation, troubleshooting and incident-response workflows.</dd></div>
+              <div><dt>Red Hat &amp; CentOS labs</dt><dd>Ansible and AWX automation for provisioning and configuring Linux lab environments.</dd></div>
+              <div><dt>Licence counting</dt><dd>Built a Python tool to automate licence counting and reduce manual work.</dd></div>
+            </dl>
+          </article>
+          <article class="project-row hivemind"><span class="project-type">AI-ASSISTED DEVELOPMENT / PERSONAL PROJECT</span><h3>Hivemind</h3><p>I could not find a Linux AI tool that fit the way I work, so I built Hivemind from scratch around my own workflow. It brings coding-agent sessions, activity, and usage visibility into a desktop and terminal workspace, with support for review and second opinions.</p><p>The aim is to make work across multiple agents easier to follow: keep track of ongoing tasks, move between sessions, and see where attention is needed. It reflects the same approach I bring to infrastructure: understand the workflow, reduce repetitive steps, and build tools that make the work easier to manage.</p><p class="repository-status">Repository currently private.</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="experience" aria-labelledby="experience-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">03 /</span><h2 id="experience-heading">Work<br class="desktop-break"> experience</h2></div>
+        <div class="section-body">
+          <article class="job">
+            <div class="job-meta"><span>April 2020–present</span><span>Tromsø, Norway</span></div>
+            <h3>Senior System Engineer</h3><p class="employer">Norsk helsenett SF</p>
+            <div class="team"><h4>Kubernetes team <span>April 2025–present</span></h4><ul><li><strong>Tanzu operations:</strong> worked with around <strong>300 Tanzu clusters and 1,400 Tanzu nodes</strong>.</li><li><strong>Current combined platform:</strong> around <strong>500 clusters in total</strong>, comprising approximately <strong>300 Tanzu and 200 Vitistack clusters</strong>, supporting critical healthcare infrastructure.</li><li>Contribute to Kubernetes upgrades, platform automation, and the transition from Tanzu to Viti/Vitistack, including work with Talos.</li><li>Develop internal operational tools, including Viti Center. Much of my recent coding work is in Go.</li></ul></div>
+            <div class="job-responsibilities"><h4>Linux operations &amp; automation</h4><ul><li>Linux operations and third-line troubleshooting, with Ansible and Hammer automation for Satellite installation, configuration, and rebuilds.</li><li>On-call responsibilities across Linux, container, and HashiCorp Vault teams, including incident response.</li><li>CyberArk API automation for SSH-key rotation, and incident-response tooling using Satellite and Insights APIs.</li></ul></div>
+          </article>
+          <article class="job earlier-role"><div class="job-meta"><span>July 2018–April 2020</span></div><h3>System Administrator</h3><p class="employer">Nordland fylkeskommune</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="skills" aria-labelledby="skills-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">04 /</span><h2 id="skills-heading">Technical<br class="desktop-break"> skills</h2></div>
+        <div class="section-body skill-list">
+          <div class="skill"><h3>Linux &amp; lifecycle management</h3><div><p class="technologies">RHEL · Red Hat Satellite · Hammer · Insights</p><p>Linux operations, lifecycle management, patching, and third-line troubleshooting in large server environments.</p></div></div>
+          <div class="skill"><h3>Containers &amp; platforms</h3><div><p class="technologies">Kubernetes · Talos · Tanzu · Vitistack · Harbor</p><p>Platform operations, Kubernetes upgrades, and migration work, with recent focus on the transition from Tanzu to Vitistack and work involving Talos.</p></div></div>
+          <div class="skill"><h3>Automation &amp; development</h3><div><p class="technologies">Go · Python · Bash · Ansible/AWX · Puppet</p><p>Much of my recent tool development is in Go. I am familiar with Python and have practical experience in Bash scripting and infrastructure automation using Ansible, AWX and Puppet.</p></div></div>
+          <div class="skill"><h3>Security &amp; operations</h3><div><p class="technologies">HashiCorp Vault · CyberArk · Monitoring · Incident response</p><p>On-call work, operational troubleshooting, platform visibility, and automation involving SSH-key rotation.</p></div></div>
+          <div class="approach"><h3>How I work</h3><p>Linux is both my professional focus and a long-standing personal interest. I enjoy understanding how systems behave, troubleshooting difficult problems, and improving the tools I use every day.</p><p>When a task becomes repetitive, I look for a way to make it repeatable and easier to operate. That mindset runs through my scripting, platform automation, Viti Center, and my AI-assisted development workflow with Hivemind.</p></div>
+        </div>
+      </section>
+
+      <section class="section qualifications" id="qualifications" aria-labelledby="qualifications-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">05 /</span><h2 id="qualifications-heading">Certifications<br class="desktop-break"> &amp; education</h2></div>
+        <div class="section-body qualification-grid">
+          <div><h3 class="small-heading">Certifications earned</h3><dl class="credentials"><div><dt>RHCE <span>Red Hat Certified Engineer</span></dt><dd>April 2024</dd></div><div><dt>RHCSA <span>Red Hat Certified System Administrator</span></dt><dd>February 2024</dd></div></dl></div>
+          <div><h3 class="small-heading">Training completed</h3><dl class="credentials"><div><dt>CKA course</dt><dd>2023</dd></div><div><dt>Puppet Advanced</dt><dd>2022</dd></div><div><dt>Puppet Essentials</dt><dd>2021</dd></div></dl></div>
+          <div class="education"><h3 class="small-heading">Education · Oscarsborg VGS</h3><p>Computer and electronics VG3 · 2017<br>Computer and electronics VG2 · 2016<br>Electronics VG1 · 2015</p></div>
+        </div>
+        <!-- Education entries transcribed from the original website CV. No degree or trade qualification is inferred. Certification dates are dates earned, not assertions of current validity. -->
+      </section>
+
+      <section class="section contact" id="contact" aria-labelledby="contact-heading">
+        <div class="section-label"><span class="section-number" aria-hidden="true">06 /</span><h2 id="contact-heading">Contact</h2></div>
+        <div class="section-body"><div class="contact-links"><a href="mailto:1988.hansen@gmail.com">Email <span aria-hidden="true">↗</span><span class="print-email">1988.hansen@gmail.com</span></a><a href="https://github.com/andr0id88">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/andr%C3%A9-hansen-77914a1a1/">LinkedIn <span aria-hidden="true">↗</span></a><a href="andre-hansen-cv.pdf" download="Andre-Hansen-CV.pdf">Download CV <span aria-hidden="true">↓</span></a><button class="print-button" type="button" onclick="window.print()">Print CV</button></div></div>
+      </section>
+    </main>
+    <footer><span>André Hansen / Senior System Engineer</span><a href="#main">Back to top <span aria-hidden="true">↑</span></a></footer>
+  </div>
+</body>
+</html>

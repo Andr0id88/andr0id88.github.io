@@ -1,125 +1,173 @@
 ---
-title: "CV and portfolio"
-layout: archive
+title: "André Hansen | CV and portfolio"
+layout: single
 permalink: /portfolio/
-author_profile: true
-header:
-  overlay_color: "#000"
-  overlay_filter: "0.5"
-  overlay_image: /assets/images/linux.jpg
-  actions:
-    - label: "^localhost$"
-      url: "/"
-excerpt: "Collection of CV, skills and certifications"
-
-# certifications:
-#   - url: /assets/images/malwarecert.jpg
-#     image_path: assets/images/malwarecert.jpg
-
-certs:
-  - image_path: assets/images/rhcsa-certification.jpg
-    title: "RHCSA"
-    excerpt: "Redhat Certified System Administrator"
-  - image_path: /assets/images/vault-enterprise-diploma.jpg
-    title: "HC Vault"
-    excerpt: "Hashicorp Vault enterprise proof of attendance"
-  - image_path: /assets/images/k8s-diploma.jpg
-    title: "Kubernetes"
-    excerpt: "Certified Kubernetes Administrator proof of attendance"
-
-myself:
-  - image_path: /assets/images/cat.png
-    title: "About me"
-    excerpt: "I have been an avid Linux user for over 15 years, and I find great joy in optimizing systems, whether it's my personal work laptop or automating multiple servers using cutting-edge technologies. I consider myself someone who thinks outside the box when it comes to efficient Linux workflows, and I thrive in the terminal environment."
+author_profile: false
+excerpt: "Senior System Engineer specialising in Linux infrastructure, Kubernetes, platform operations, and practical automation."
 ---
 
-{% include feature_row id="myself" type="left" %}
+# André Hansen
 
-## IT work history
+## Senior System Engineer
 
-|                Role                |        Employer        |    Start/End    |
-| :--------------------------------- | :--------------------: | ----------------|
-| Linux system engineer              |   Norsk Helsenett SF   | 2020 - Current  |
-| Windows system engineer / support  | Nordland fylkeskommune | 2018 - 2020     |
+I operate Linux infrastructure and Kubernetes platforms supporting national healthcare services in Norway. My work combines hands-on operations, troubleshooting, incident response, and automation.
 
-## Projects
-I have been a part of many minor and larger projects in the last years, here are some of the projects i have been a part of.
-#### Redhat satellite
-One of the significant projects I undertook was the independent setup of RedHat Satellite for over 1000 servers within the healthcare sector in Norway. This ongoing project requires continuous problem-solving and automation efforts as new teams and challenges emerge. The setup involved a combination of automation tools such as Puppet, Ansible, and shell scripts.
-#### Redhat insights
-As part of my responsibilities, I took the initiative to introduce RedHat Insights alongside Satellite to our organization. I have been consistently working to enhance the integration of the Insights service with our overall platform. The goal is to establish a secure environment that enables our security team and other stakeholders to promptly identify and address emerging threats.
-#### Ansible automation platform
-Currently, I am actively engaged in setting up the Ansible Automation Platform to offer a brand new service to all our employees. The plan involves integrating this platform with Satellite and Insights to provide an automated errata and remediation service for our Linux platform. Additionally, as part of the Ansible Automation Platform implementation, we are leveraging Ansible for automation across our entire infrastructure, including both Windows and Linux machines as well as network devices.
-#### Linux work surface
-When I initially joined NHN Linux, the concept of using Linux as an office computer seemed unattainable. However, I am proud to be part of a significant project that aims to change that perception. We are in the final stages of being able to offer Linux as a work laptop, with Satellite and Insights playing a crucial role in this endeavor. Personally, as a beta tester for this new Linux laptop, I have witnessed a remarkable increase in my productivity.
-#### Cyberark
-Another ongoing project I have been involved in is the implementation of Cyberark systems to enhance the security of both our Linux and Windows servers in the infrastructure. This project continues to expand each year, incorporating new components and integrations.
-#### Hashicorp Vault
-A pivotal project I've been involved in is the implementation of HashiCorp Vault across our organization. Recognizing the need for robust secrets management and data protection, our team embarked on the initiative to deploy Vault, aimed at securing, storing, and tightly controlling access to tokens, passwords, certificates, API keys, and other secrets in modern computing. The setup process entailed a comprehensive evaluation of our security needs, followed by the collaborative customization and deployment of Vault to meet these requirements within a highly regulated healthcare sector environment.
-#### Homelab
-In my personal capacity, I maintain an extensive homelab environment consisting of Kubernetes clusters running AWX, Gitea, Jenkins, and other tools. Additionally, I manage multiple virtual machines running Foreman, as well as test VMs with various web servers and databases for automation testing and experimentation. I also maintain a few Windows VMs as victims for my Kali Linux machine.
+I also build practical tools that make platforms easier to understand and operate. Much of my recent development work is in **Go**. I also work with Bash and am familiar with Python.
 
-## Education
+[Download CV](/preview/andre-hansen-cv.pdf) · [View projects](#selected-projects) · [Contact me](#contact) · [Email](mailto:1988.hansen@gmail.com) · [GitHub](https://github.com/andr0id88) · [LinkedIn](https://www.linkedin.com/in/andr%C3%A9-hansen-77914a1a1/)
 
-| Subject                           | School                 | Year           |
-| :-------------------------------- | :--------------------: | -------------- |
-| Computer and electronics VG3      |   Oscarsborg VGS       |      2017      |
-| Computer and electronics VG2      |   Oscarsborg VGS       |      2016      |
-| Electronics VG1                   |   Oscarsborg VGS       |      2015      |
+## Selected achievements
+
+Highlights from previous work. Figures describe the environments and projects at the time.
+
+- **Kubernetes platform migration (Tanzu to Vitistack):** Contributed to building Vitistack and the transition from Tanzu for platforms supporting national healthcare services. My work spans Kubernetes, Talos, platform upgrades, and operational automation.
+- **1,400+ Linux servers:** Worked with a Linux estate of more than 1,400 servers, including third-line troubleshooting and on-call responsibilities.
+- **Approximately 1,400 servers migrated:** Contributed to the migration of approximately 1,400 servers to a new Red Hat Satellite environment.
+
+## Selected projects
+
+### Tanzu to Vitistack
+
+**Kubernetes migration · Team contribution**
+
+As part of the Kubernetes team, I have contributed to building Vitistack and migrating from Tanzu. This work brings together platform operations, Kubernetes upgrades, Talos, and automation in an environment supporting national healthcare services.
+
+Alongside the migration, I develop Viti Center to make platform state, migration progress, and resilience risks visible to the operations team.
+
+### Viti Center
+
+**Internal platform operations project · Norsk helsenett SF**
+
+From cluster requests to day-to-day platform operations.
+
+**What I build:** I develop Viti Center, a Go-based platform that connects infrastructure diagnostics with the workflows needed to operate Vitistack. It brings requests, provisioning, cluster lifecycle, access, and platform health into one workspace, alongside my contribution to the Tanzu-to-Vitistack migration.
+
+**Integrations and capabilities**
+
+- **Requests and provisioning:** Connects Slack/vitibot requests to cluster creation, changes, deletion, access, and ROR project workflows. Tracks provisioning stages and supports completion notifications to requesters.
+- **Cluster lifecycle:** Combines Kubernetes and Talos inventory with upgrade readiness, version checks, and reviewed workflows for provisioning, scaling, and decommissioning clusters.
+- **Tooling and access:** Integrates Argo CD application health and drift with ROR inventory, project metadata, and access management. Provides controlled tooling actions and records administrative activity.
+- **Infrastructure and resilience:** Brings together KubeVirt placement and capacity, Ceph storage health, operator diagnostics, and networking information. Highlights workloads exposed to a single worker-node failure and makes placement and anti-affinity risks actionable.
+
+**Engineering scope:** A Go hub and distributed agents collect information across sites and clusters. Operational workflows include permission checks, plan review, and audit records. Missing or stale reports remain visible, so incomplete information is not mistaken for a healthy platform.
+
+**Practical value:** An operator can follow a request from its Slack entry into provisioning, investigate the resulting cluster and its tooling, and review migration progress or resilience findings in the same workspace. The project connects the operational context that would otherwise need to be assembled across separate systems.
+
+Integration capabilities depend on configuration and access permissions. This is an internal project, not a public source-code release.
+
+[View the platform overview with demonstration data](/preview/media/viti-center-overview.png). The overview brings together platform health, running operations, findings, pending orders, tooling state, upgrade readiness, releases, and migration tracking. Platform releases include version currency and differences between datacenters. Names and figures are illustrative. [View the cluster list and details pane](/preview/media/viti-center-clusters.png). Expanded location filters show the fleet across three demonstration datacenters from one central hub. Inspect a cluster’s platform versions, machine capacity, network information, and readiness in the same workspace. This view also uses mock data.
+
+### Automation & tooling
+
+I automate recurring Linux and Kubernetes operations, from rebuilding infrastructure to upgrading platforms and rotating SSH keys.
+
+- **Red Hat Satellite lifecycle:** Automated Satellite installation, configuration and rebuilds with Ansible and Hammer, making deployments repeatable and simplifying maintenance. This complemented my contribution to migrating approximately 1,400 servers to a new Satellite environment.
+- **Kubernetes upgrade tooling:** Built tooling for recurring Kubernetes upgrade tasks in Tanzu and Talos environments, helping standardise platform maintenance and reduce manual work.
+- **CyberArk SSH-key rotation:** Automated SSH-key rotation through the CyberArk API, reducing manual credential handling across Linux infrastructure.
+- **Satellite & Insights incident response:** Built tools using the Satellite and Insights APIs to bring Linux fleet information into investigation, troubleshooting and incident-response workflows.
+- **Red Hat and CentOS labs:** Ansible and AWX automation for provisioning and configuring Linux lab environments.
+- **Licence counting:** Built a Python tool to automate licence counting and reduce manual work.
+
+### Hivemind
+
+**AI-assisted development · Personal project · Repository currently private**
+
+I could not find a Linux AI tool that fit the way I work, so I built Hivemind from scratch around my own workflow. It brings coding-agent sessions, activity, and usage visibility into a desktop and terminal workspace, with support for review and second opinions.
+
+The aim is to make work across multiple agents easier to follow: keep track of ongoing tasks, move between sessions, and see where attention is needed. It reflects the same approach I bring to infrastructure: understand the workflow, reduce repetitive steps, and build tools that make the work easier to manage.
 
 
-## Courses
+## Work experience
 
-| Subject                                      | Employer           | Year |
-|----------------------------------------------|--------------------|------|
-| RHCE - Redhat Certified Engineer             | Norsk Helsenett SF | 2024 |
-| RHCSA - Redhat Certified System Administrator | Norsk Helsenett SF | 2024 |
-| HC Vault - HashiCorp Vault Enterprise Academy | Norsk Helsenett SF | 2024 |
-| CKA - Certified Kubernetes Admin             | Norsk Helsenett SF | 2023 |
-| Puppet Essentials                            | Norsk Helsenett SF | 2022 |
-| Puppet Beginner Course                       | Norsk Helsenett SF | 2021 |
+### Senior System Engineer, Norsk helsenett SF
 
+**Tromsø, Norway · April 2020–present**
 
-## Skills
+**Kubernetes team · April 2025–present**
 
-| Skill         |                       Certification                       |
-| :------------ | :-------------------------------------------------------: |
-| Bash          | [Passed LinkedIn Skill Assesment](https://bit.ly/3yLLHGt) |
-| Cybersecurity | [Passed LinkedIn Skill Assesment](https://bit.ly/3EMooAf) |
-| Git           | [Passed LinkedIn Skill Assesment](https://bit.ly/3CZ2A2W) |
-| IT Operations | [Passed LinkedIn Skill Assesment](https://bit.ly/3EHKtQx) |
-| Linux         | [Passed LinkedIn Skill Assesment](https://bit.ly/3CF8Co0) |
+- **Tanzu operations:** worked with around **300 Tanzu clusters and 1,400 Tanzu nodes**.
+- **Current combined platform:** around **500 clusters in total**, comprising approximately **300 Tanzu and 200 Vitistack clusters**, supporting critical healthcare infrastructure.
+- Contribute to Kubernetes upgrades, platform automation, and the transition from Tanzu to Viti/Vitistack, including work with Talos.
+- Develop internal operational tools, including Viti Center. Much of my recent coding work is in Go.
 
-## Certifications and diplomas
+**Linux operations and automation**
 
-{% include feature_row id="certs" type="left" %}
+- Linux operations and third-line troubleshooting, with Ansible and Hammer automation for Satellite installation, configuration, and rebuilds.
+- On-call responsibilities across Linux, container, and HashiCorp Vault teams, including incident response.
+- CyberArk API automation for SSH-key rotation, and incident-response tooling using Satellite and Insights APIs.
 
-| Skills w\o certification           |
-| :--------------------------------- |
-| Active directory                   |
-| Ansible                            |
-| Apache                             |
-| Arch                               |
-| Automation                         |
-| Containers                         |
-| Cyberark                           |
-| DNS                                |
-| Identity & Access Management (IAM) |
-| Infrastructure                     |
-| Iptables                           |
-| Kubernetes                         |
-| Linux System Administration        |
-| Nginx                              |
-| Open-Soruce Software               |
-| Puppet                             |
-| Redhat Satellite                   |
-| RHEL                               |
-| Sentry                             |
-| System automation                  |
-| System deployment                  |
-| Troubleshooting                    |
-| Ubuntu                             |
-| Vim                                |
-| Windows                            |
+### System Administrator, Nordland fylkeskommune
 
-<a href="#" class="btn btn--primary">Back to the top</a>
+**July 2018–April 2020**
+
+## Technical skills
+
+### Linux and lifecycle management
+
+**RHEL · Red Hat Satellite · Hammer · Insights**
+
+Linux operations, lifecycle management, patching, and third-line troubleshooting in large server environments.
+
+### Containers and platforms
+
+**Kubernetes · Talos · Tanzu · Vitistack · Harbor**
+
+Platform operations, Kubernetes upgrades, and migration work, with recent focus on the transition from Tanzu to Vitistack and work involving Talos.
+
+### Automation and development
+
+**Go · Python · Bash · Ansible/AWX · Puppet**
+
+Much of my recent tool development is in Go. I am familiar with Python and have practical experience in Bash scripting and infrastructure automation using Ansible, AWX and Puppet.
+
+### Security and operations
+
+**HashiCorp Vault · CyberArk · Monitoring · Incident response**
+
+On-call work, operational troubleshooting, platform visibility, and automation involving SSH-key rotation.
+
+### How I work
+
+Linux is both my professional focus and a long-standing personal interest. I enjoy understanding how systems behave, troubleshooting difficult problems, and improving the tools I use every day.
+
+When a task becomes repetitive, I look for a way to make it repeatable and easier to operate. That mindset runs through my scripting, platform automation, Viti Center, and my AI-assisted development workflow with Hivemind.
+
+## Certifications and education
+
+### Certifications earned
+
+- **RHCE (Red Hat Certified Engineer):** earned April 2024.
+- **RHCSA (Red Hat Certified System Administrator):** earned February 2024.
+
+### Training completed
+
+- **CKA course:** completed in 2023.
+- **Puppet Advanced:** completed in 2022.
+- **Puppet Essentials:** completed in 2021.
+
+### Education: Oscarsborg VGS
+
+- Computer and electronics VG3 (2017).
+- Computer and electronics VG2 (2016).
+- Electronics VG1 (2015).
+
+<!-- Editorial follow-up, not public CV copy:
+Automation case-study detail pending: exact steps automated by the Tanzu/Talos upgrade tools; exact Satellite/Insights API actions during incident response. The owner has confirmed personally developing the four automation examples. Do not infer scanning, patching, isolation, ticket creation, or automatic remediation.
+Lab context pending: location, period, role, and exact provisioning/configuration scope. Student/teaching claims are withheld until confirmed.
+Education entries are transcribed from the original website CV. Confirm the formal qualification before naming a degree or trade certificate.
+Missing: Oscarsborg VGS IT/teaching job title, dates, and responsibilities; Norwegian and English proficiency levels.
+Viti Center integration capabilities are grounded in the local project README and implementation structure, not roadmap documents. Public copy does not assert that every optional feature is enabled in production. Automatic field completion, separate Slack bot ownership, feature adoption, and measured workflow improvements still need confirmation.
+Confirm individual initiation/design/build/maintenance responsibilities for Viti Center, Hivemind, and the Slack/provisioning workflow, and the actual contribution in AI-assisted development.
+Add quantitative or colleague-adoption outcomes only when supported by evidence.
+The 1,400-node figure applies to the earlier Tanzu environment of about 300 clusters; exact period remains to be confirmed. It is separate from the Linux server estate and the current combined count of about 500 clusters.
+Certification dates are dates earned; current validity has not been verified.
+The LinkedIn URL is retained from _config.yml with a valid HTTPS scheme; confirm it is the correct current profile.
+Portfolio media was captured from isolated local interfaces using mock data and generic identifiers. No production infrastructure data or employer-owned source code is included.
+-->
+
+## Contact
+
+- [Email: 1988.hansen@gmail.com](mailto:1988.hansen@gmail.com)
+- [GitHub: andr0id88](https://github.com/andr0id88)
+- [LinkedIn](https://www.linkedin.com/in/andr%C3%A9-hansen-77914a1a1/)
+- [Download CV](/preview/andre-hansen-cv.pdf)

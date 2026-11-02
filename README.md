@@ -9,9 +9,12 @@ The production website is in `site/`. It is static HTML, CSS, and JavaScript wit
 - `site/index.html`: CV and project content.
 - `site/styles.css` and `site/site.js`: presentation and accessible project navigation.
 - `site/media/`: approved project artwork and screenshots using demonstration data.
+- `site/media/social-preview.png`: 1200 × 630 link-preview image for social sharing. Its editable source is `design/social-preview.html`; capture that page at 1200 × 630 after the local fonts load.
 - `site/cv.html` and `site/cv.css`: print source for the downloadable CV.
 - `site/andre-hansen-cv.pdf`: downloadable two-page CV. Regenerate from `cv.html` with A4 paper and CSS page sizing after CV changes.
 - `site/fonts/OFL.txt`: font licence.
+
+The homepage leads with a professional profile, work experience, skills, and qualifications. Project case studies follow the CV overview. Keep the homepage and downloadable CV consistent, including Hivemind's description as an AI multi-agent workflow tool for Linux.
 
 To preview locally:
 

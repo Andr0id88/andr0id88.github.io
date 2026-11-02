@@ -197,7 +197,7 @@ footer a { display: inline-flex; align-items: center; gap: 10px; min-height: 44p
   .print-only { display: block; }
   .integration-grid { display: none; }
   .project-feature .project-detail, .project-feature .project-lead, .project-feature .capabilities, .project-feature .project-note, .project-row:not(.hivemind), .hivemind p + p, .skill p:not(.technologies), .approach, .contact h3, .contact .section-body > p { display: none; }
-  #experience { break-before: page; }
+  #achievements { break-before: page; }
   .cv-project-summary { font-size: 9.5pt; line-height: 1.6; color: var(--muted); margin-top: 12px; }
   .section-label { display: flex; gap: 12px; align-items: baseline; padding: 0; margin-bottom: 15px; break-after: avoid; }
   .section-number { margin: 0; font-size: 8px; }
